@@ -67,8 +67,8 @@ function bullionHallmarks(){
 
 export function refineBalanceModel(model){
  const materials={
-  gold:new THREE.MeshPhysicalMaterial({color:0xe3b650,metalness:1,roughness:.19,envMapIntensity:1.15}),
-  edge:new THREE.MeshPhysicalMaterial({color:0xedc768,metalness:1,roughness:.14,envMapIntensity:1.2}),
+  gold:new THREE.MeshPhysicalMaterial({color:0xe3b650,metalness:1,roughness:.23,envMapIntensity:1.15}),
+  edge:new THREE.MeshPhysicalMaterial({color:0xedc768,metalness:1,roughness:.18,envMapIntensity:1.2}),
   bullion:new THREE.MeshPhysicalMaterial({color:0xf0c95c,metalness:1,roughness:.22,envMapIntensity:1.1}),
   stamp:new THREE.MeshPhysicalMaterial({color:0xa67d25,metalness:1,roughness:.32,envMapIntensity:.9})
  };
@@ -95,12 +95,18 @@ export function refineBalanceModel(model){
    geometry=new THREE.SphereGeometry(.17,40,28);geometry.scale(1,1.12,1);material=materials.edge;
   }else if(id==='beam'){
    const points=component.geometryDescriptor.tubePath.points.map(p=>new THREE.Vector3(...p));
-   geometry=new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points),96,.069,20,false);
-   geometry.scale(1,1,.8);
+   const beam=new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points),96,.069,20,false);
+   beam.scale(1,1,.8);
+   const parts=[beam];
+   for(const p of [points[0],points.at(-1)]){
+    const cap=new THREE.SphereGeometry(.067,16,10);cap.scale(1,1,.8);cap.translate(p.x,p.y,p.z);parts.push(cap);
+    const eye=new THREE.TorusGeometry(.06,.014,8,32);eye.rotateX(Math.PI/2);eye.scale(1.3,1,.8);eye.translate(p.x,p.y,p.z);parts.push(eye);
+   }
+   geometry=merge(parts);
   }else if(id==='beam-center'){
    geometry=lathe([[0,-.57],[.09,-.57],[.113,-.555],[.126,-.53],[.13,-.5],[.13,.5],[.126,.53],[.113,.555],[.09,.57],[0,.57]],80);material=materials.edge;
   }else if(id.startsWith('pan-')){
-   geometry=lathe([[0,-.117],[.25,-.117],[.42,-.113],[.53,-.097],[.62,-.059],[.69,-.011],[.739,.044],[.765,.083],[.767,.095],[.757,.105],[.745,.1],[.721,.066],[.681,.018],[.615,-.033],[.53,-.071],[.42,-.087],[.25,-.092],[0,-.092]],96);
+   geometry=lathe([[0,-.165],[.25,-.165],[.42,-.154],[.53,-.128],[.62,-.082],[.69,-.025],[.739,.039],[.765,.083],[.767,.095],[.757,.105],[.745,.1],[.721,.061],[.681,.002],[.615,-.057],[.53,-.101],[.42,-.124],[.25,-.13],[0,-.13]],96);
   }else if(id.startsWith('rim-')){
    geometry=new THREE.TorusGeometry(.756,.012,10,96);material=materials.edge;
   }else if(id.startsWith('chain-')){
@@ -109,6 +115,9 @@ export function refineBalanceModel(model){
    const chain=linkedChain(length);geometry=chain.geometry;stats.links+=chain.count;mesh.userData.linkCount=chain.count;
    material=materials.edge;
   }else if(id.startsWith('bar-')){
+   // Seat the bullion in the concave dish; the old preview left a visible gap.
+   const seatY={'bar-left':1.38,'bar-left-second':1.643,'bar-right':1.63}[id];
+   if(seatY!==undefined)mesh.parent.position.y=seatY;
    const d=component.dimensions;
    const body=new RoundedBoxGeometry(d.width,d.height,d.depth,3,.023);
    const positions=body.attributes.position;

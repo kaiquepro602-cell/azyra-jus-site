@@ -7,11 +7,13 @@
 <meta name="description" content="Uma nova perspectiva para seu escritório. Conheça a Azyra Jus em uma experiência com balança 3D, gestão jurídica e demonstração interativa.">
 <title>Azyra Jus — Equilíbrio para sua próxima decisão</title>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/playfair-display.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <script src="assets/vendor/gsap.min.js" defer></script><script src="assets/vendor/ScrollTrigger.min.js" defer></script><script src="config.js" defer></script><script src="app.js" defer></script><script src="motion.js" defer></script><link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="premium.css">
-<link rel="stylesheet" href="editorial.css?v=20261014-detail">
+<link rel="stylesheet" href="editorial.css?v=20261014-orbit">
 <noscript><style>#interactive-preview,.demo-toolbar,.resource-track,.gallery-controls,.balance-controls{display:none}.hero-copy{opacity:1!important;transform:none!important}</style></noscript>
-<script src="balance-3d.js?v=20261014-detail" defer></script>
+<script src="balance-3d.js?v=20261014-orbit" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#plataforma">Pular para a demonstração</a><div class="reading-progress" aria-hidden="true"><i id="reading-progress"></i></div>
@@ -51,24 +53,11 @@
   <p class="hero-disclaimer"><span class="status-dot" aria-hidden="true"></span>MVP em validação · Demonstração com dados fictícios</p>
  </div>
  <div class="balance-stage">
-  <div class="scene-coordinate" aria-hidden="true">A / EQUILÍBRIO EM PERSPECTIVA</div>
   <div id="balance-viewport"><img id="balance-fallback" src="assets/balanca-referencia.webp" alt="Referência da balança dourada com barras de ouro" width="4000" height="4000"></div>
-  <div class="scene-caption">
-<span class="scene-mark" aria-hidden="true">360°</span><div>
-<p id="scene-help">Arraste para mudar de perspectiva.</p>
-<span>Um mesmo objeto. Novos pontos de vista.</span>
-</div>
-</div>
-  <div class="balance-controls" aria-label="Controles da balança 3D">
-<button data-turn="-1" aria-label="Girar vista 45 graus para a esquerda">←</button><button data-turn="1" aria-label="Girar vista 45 graus para a direita">→</button><button id="balance-reset" aria-label="Restaurar perspectiva inicial">Restaurar</button><button id="balance-pause" aria-pressed="false">Pausar balanço</button>
-</div>
-  <p id="scene-status" class="scene-status" aria-live="polite">Preparando a perspectiva 3D…</p>
+  <p id="scene-help" class="sr-only">Arraste ou use as setas do teclado para explorar a balança. Home restaura a vista. Espaço pausa ou retoma a rotação. O botão Movimento do cabeçalho interrompe as animações automáticas.</p>
+  <p id="scene-status" class="sr-only" aria-live="polite">Preparando a perspectiva 3D…</p>
  </div>
- <div class="hero-bottom">
-<span>A ROTINA MUDA.<br>O CONTEXTO ACOMPANHA.</span><a href="#visao" class="hero-scroll">DESCUBRA <span aria-hidden="true">↓</span></a><span class="hero-bottom-end">PRECISÃO<br>EM CADA DETALHE.</span>
-</div>
 </section><section class="vision-section cream" id="visao"><div class="vision-label">
-<p class="eyebrow">NOSSA VISÃO / SUA ROTINA</p>
 <div class="vision-image">
 <img src="assets/escritorio.webp" alt="Imagem conceitual da Azyra Jus: escritório com detalhes em verde, dourado e creme" loading="lazy" width="1600" height="900"><span>AZYRA JUS / UM NOVO CONTEXTO</span>
 </div>

@@ -6,13 +6,22 @@
     "chainLinkOpenCentresAndWireRaycasts": "PASS",
     "parts": 26,
     "links": 156,
-    "triangles": 86724
+    "triangles": 88324
   },
   "interaction": [
     {
       "libraries": true,
       "reduced": false,
       "failure": false,
+      "desktop": true,
+      "result": "PASS",
+      "verification": "DOM, real Three geometry / OrbitControls, mocked WebGL renderer; not GPU/browser QA"
+    },
+    {
+      "libraries": true,
+      "reduced": false,
+      "failure": false,
+      "desktop": false,
       "result": "PASS",
       "verification": "DOM, real Three geometry / OrbitControls, mocked WebGL renderer; not GPU/browser QA"
     },
@@ -20,6 +29,7 @@
       "libraries": true,
       "reduced": true,
       "failure": false,
+      "desktop": true,
       "result": "PASS",
       "verification": "DOM, real Three geometry / OrbitControls, mocked WebGL renderer; not GPU/browser QA"
     },
@@ -27,6 +37,7 @@
       "libraries": true,
       "reduced": false,
       "failure": true,
+      "desktop": true,
       "result": "PASS",
       "verification": "DOM, real Three geometry / OrbitControls, mocked WebGL renderer; not GPU/browser QA"
     },
@@ -34,6 +45,7 @@
       "libraries": false,
       "reduced": false,
       "failure": false,
+      "desktop": true,
       "result": "PASS",
       "verification": "DOM, real Three geometry / OrbitControls, mocked WebGL renderer; not GPU/browser QA"
     }
@@ -48,5 +60,22 @@
   "limits": [
     "Offline geometry inspection only; browser GPU appearance and performance pending",
     "img2threejs fidelity approval pending; later passes locked"
+  ],
+  "fontValidation": {
+    "PortugueseGlyphs": "PASS",
+    "variableWeightAxes": "PASS",
+    "files": 3
+  },
+  "previousRevisionUserBrowserCapturesReviewed": true,
+  "automaticRotationChecks": [
+    "clockwise on desktop",
+    "no automatic yaw on touch",
+    "stops for reduced motion",
+    "hover and focus pause",
+    "smooth delayed restart",
+    "Space pause/resume and key-repeat guard",
+    "360 degree manual orbit",
+    "font-ready ScrollTrigger refresh",
+    "system reduced-motion default and explicit Motion-button opt-in"
   ]
 }

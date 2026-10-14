@@ -20,12 +20,18 @@ Esta versão não foi publicada automaticamente.
 ## Interação na abertura
 
 - Arraste horizontalmente com o mouse ou com o dedo para explorar os ângulos da balança.
-- Os botões de setas giram a vista em incrementos de 45 graus, sem limite horizontal.
+- As setas do teclado giram a vista em incrementos de 45 graus, sem limite horizontal.
 - Focalize o objeto com Tab e use as setas do teclado. Home restaura a vista inicial.
-- O objeto flutua levemente e oscila em três eixos. Não há rotação de uma fotografia: base, coluna, braço, pratos e barras são malhas tridimensionais.
-- “Pausar balanço” interrompe o movimento ambiente. A rotação manual continua disponível.
-- O botão de movimento do cabeçalho e a preferência de movimento reduzido do sistema removem as animações automáticas.
+- Em computadores com mouse, o objeto gira automaticamente no sentido horário ao redor do eixo vertical, com uma volta em aproximadamente 80 segundos e movimento ambiente discreto. Em dispositivos de toque, o giro é manual. Base, coluna, braço, pratos e barras são malhas tridimensionais.
+- Passe o mouse, focalize ou arraste o objeto para suspender o giro automático. Ele retorna suavemente após a interação. Espaço pausa ou retoma o movimento; a rotação manual continua disponível.
+- A preferência de movimento reduzido do sistema é respeitada por padrão. O botão Movimento permite escolher explicitamente entre ativar e pausar as animações; essa escolha vale para a sessão e também controla o giro da balança.
 - A renderização ambiente para fora da área visível e quando a aba está oculta.
+
+O painel visual abaixo da balança, a legenda vertical, os textos decorativos no fim da abertura e a legenda de visão marcados nas capturas foram removidos. As instruções continuam disponíveis para leitores de tela. A posição da balança fica mais próxima da margem direita; o enquadramento inicial destaca a profundidade dos pratos. Sombras reais entre as peças e sob a base reforçam o volume, sem adicionar imagens do objeto.
+
+## Tipografia
+
+Títulos e destaques usam Playfair Display, com pesos 600 e 700 e itálico próprio. Textos e interface usam Manrope, com pesos variáveis. As fontes WOFF2 estão em `assets/fonts` e funcionam sem serviços externos. Os arquivos oficiais completos foram convertidos com FontTools, mantendo glifos, nomes e eixos de peso; licenças SIL Open Font License acompanham cada família.
 
 ## Skills aplicadas
 
@@ -35,13 +41,15 @@ Esta versão não foi publicada automaticamente.
 
 ## Estado da reconstrução
 
-O ZIP do objeto continha JPG e EPS, sem GLB/OBJ. O modelo foi reconstruído a partir da imagem em código Three.js. A revisão de 14/10/2026 mantém 26 partes e possui 86.724 triângulos, incluindo 156 elos ovais alternados nas seis correntes, base octogonal com chanfros, perfis torneados, bordas dos pratos e barras chanfradas com inscrições em relevo.
+O ZIP do objeto continha JPG e EPS, sem GLB/OBJ. O modelo foi reconstruído a partir da imagem em código Three.js. A revisão de 14/10/2026 mantém 26 partes e possui 88.324 triângulos, incluindo 156 elos ovais alternados nas seis correntes, encaixes nas extremidades do braço, base octogonal com chanfros, perfis torneados, pratos com maior concavidade e barras chanfradas com inscrições em relevo. A altura das barras foi ajustada para que se apoiem nos pratos.
 
 É uma **prévia aproximada de reconstrução**, ainda sem aprovação do primeiro estágio de escultura. O verso é inferido e as inscrições são aproximações em relevo. A correção manual do modelo atual fica em `src/refineBalanceModel.js`; seus parâmetros estão preservados em `docs/object-sculpt-spec.json`, no campo `websiteRefinement`. Não é uma réplica fiel nem um modelo com todos os passes da skill aprovados.
 
 A revisão img2threejs permanece pendente. A imagem original tem fundo escuro e reflexos fortes: o novo diagnóstico de silhueta descartou 70,5% dos pixels de primeiro plano da referência e 36,8% do render de inspeção durante a comparação. Esse resultado não fornece uma medida válida de fidelidade. Nenhuma aprovação de fidelidade foi inventada e nenhum passe posterior foi liberado. Para prosseguir com a aprovação, são necessárias uma referência limpa para comparação e capturas do objeto no navegador.
 
 Foram produzidas renderizações offline em cinco ângulos, usando a geometria exata exportada da factory Three.js. Essas renderizações verificam o volume aproximado, mas usam um renderizador de inspeção; não comprovam o material final no navegador. A captura de navegador e a validação visual do site não estavam disponíveis nesta sessão.
+
+As capturas enviadas pelo usuário mostram a versão anterior funcionando com WebGL e foram utilizadas para identificar os elementos a remover e a nova posição. Elas não validam a aparência, as sombras ou o desempenho da revisão mais recente. A aprovação de fidelidade permanece pendente, e nenhum passe posterior de escultura foi desbloqueado.
 
 A foto de fundo do escritório usa os 1.672 × 941 pixels do arquivo original, sem ampliação artificial, filtro de desfoque ou dessaturação. A opacidade da imagem passou de 7% para 100%, com gradientes de contraste sobrepostos atrás do texto. A foto da seção de visão também deixou de ser ampliada por parallax. O canvas 3D utiliza antialiasing e densidade de até 2 pixels por pixel CSS; o desempenho em GPU e celular permanece a conferir.
 
@@ -53,6 +61,8 @@ A foto de fundo do escritório usa os 1.672 × 941 pixels do arquivo original, s
 - Menu, diálogos, retorno de foco, acesso, contato e privacidade.
 - Controles de 360 graus, arraste e teclado com OrbitControls e geometria Three.js reais em ambiente DOM de teste, usando um renderizador WebGL substituído para teste.
 - Pausa, movimento reduzido, funcionamento sem GSAP e alternativa estática em caso de falha no WebGL.
+- Giro horário automático no desktop, ausência de giro automático em dispositivo de toque e pausa/retomada por Espaço.
+- Presença dos glifos em português e dos eixos de peso das três fontes locais.
 
 Esses testes não verificam GPU, layout renderizado ou desempenho de navegador. Confira a aparência no Chrome e no celular antes da publicação pública.
 
