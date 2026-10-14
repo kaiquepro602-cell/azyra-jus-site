@@ -25,10 +25,14 @@ A balança fica na extremidade direita da abertura, aproximadamente 80 pixels ma
 
 ## Netlify
 
-Diretório de publicação: `.`. Comando de build vazio. A configuração está em `netlify.toml`.
+Conecte este repositório na Netlify, branch `main`. Comando de build: `npm run build`. Diretório de publicação: `dist`. A configuração está em `netlify.toml`.
+
+O build usa apenas Node.js e copia o site com o bundle 3D já pronto. Para envio manual, execute `npm run build` e arraste a pasta `dist` para a Netlify. Consulte [DEPLOY-NETLIFY.md](DEPLOY-NETLIFY.md).
 
 ## Estado e documentação
 
 O modelo 3D é uma reconstrução aproximada ainda sem aprovação de fidelidade do fluxo img2threejs. A validação visual em navegador também permanece pendente. Os módulos desta página são ilustrativos e não estão ligados ao backend do SaaS.
 
 Consulte [LEIA-ME.md](LEIA-ME.md) para controles, configuração comercial, verificações e limitações.
+
+Os textos de apoio e ações marcados na abertura usam a fonte cursiva Lobster, semelhante à referência fornecida.

@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "start": "node server.mjs",
-    "build:3d": "esbuild src/scene.js --bundle --format=iife --target=es2020 --minify --outfile=balance-3d.js --legal-comments=linked"
+    "build:3d": "esbuild src/scene.js --bundle --format=iife --target=es2020 --minify --outfile=balance-3d.js --legal-comments=linked",
+    "build": "node build.mjs"
   },
   "devDependencies": {
     "esbuild": "0.28.2",

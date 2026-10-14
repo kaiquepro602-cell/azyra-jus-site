@@ -13,7 +13,7 @@ O site já está compilado: não precisa executar `npm install` para abrir. A ex
 
 ## Publicar na Netlify
 
-O `index.html` está na raiz. Faça upload da pasta extraída que contém esse arquivo, ou conecte a pasta ao projeto Git desejado. `netlify.toml` define diretório de publicação `.` e comando de build vazio. O pacote inclui as bibliotecas necessárias e não busca GSAP ou Three.js em um CDN.
+Conecte o repositório GitHub na Netlify usando a branch `main`. `netlify.toml` define o comando `npm run build` e a pasta de publicação `dist`. Para envio manual, execute `npm run build` no terminal e envie a pasta `dist`. O build copia apenas os arquivos públicos, incluindo o bundle 3D pronto, fontes e licenças. Veja `DEPLOY-NETLIFY.md`.
 
 Esta versão não foi publicada automaticamente.
 
@@ -31,7 +31,7 @@ O painel visual abaixo da balança, a legenda vertical, os textos decorativos no
 
 ## Tipografia
 
-Títulos e destaques usam Playfair Display, com pesos 600 e 700 e itálico próprio. Textos e interface usam Manrope, com pesos variáveis. As fontes WOFF2 estão em `assets/fonts` e funcionam sem serviços externos. Os arquivos oficiais completos foram convertidos com FontTools, mantendo glifos, nomes e eixos de peso; licenças SIL Open Font License acompanham cada família.
+Títulos e destaques usam Playfair Display, com pesos 600 e 700 e itálico próprio. Textos e interface usam Manrope, com pesos variáveis. As fontes WOFF2 estão em `assets/fonts` e funcionam sem serviços externos. Os arquivos oficiais completos foram convertidos com FontTools, mantendo glifos, nomes e eixos de peso; licenças SIL Open Font License acompanham cada família. O texto de apoio, os links de ação e o aviso abaixo do título da abertura usam Lobster regular, uma aproximação cursiva da referência do usuário, com tamanho ajustado para leitura e sem alterar a tipografia do restante da página.
 
 ## Skills aplicadas
 

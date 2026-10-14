@@ -99,3 +99,11 @@ h1 em,h2 em,h3 em{font-family:var(--display-font);font-weight:600}
 @media(max-width:540px){.resource-section>.section-heading{gap:18px;margin-bottom:26px}.resource-intro{font-size:13px}.resource-track{gap:18px}.resource-card{flex-basis:calc(100vw - 78px)}.resource-visual{height:280px}.gallery-navigation{margin-top:12px}.gallery-meta{font-size:10px}.floating-actions{right:16px;bottom:calc(16px + env(safe-area-inset-bottom));gap:10px}.whatsapp-button{width:52px;padding:0}.whatsapp-button span{display:none}.footer-bottom{padding-right:55px}}
 @media(prefers-reduced-motion:reduce){.back-to-top,.whatsapp-button{transition:none;transform:none!important}}
 body.reduced-motion .back-to-top,body.reduced-motion .whatsapp-button{transform:none!important}
+
+/* Cursive accents requested in the marked hero copy. */
+@font-face{font-family:'Lobster';src:url('assets/fonts/lobster.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap}
+.editorial-hero .hero-description,.editorial-hero .primary-button,.editorial-hero .hero-secondary,.editorial-hero .hero-disclaimer{font-family:'Lobster',cursive;font-weight:400;font-style:normal;letter-spacing:0}
+.editorial-hero .hero-description{font-size:clamp(22px,1.6vw,27px);line-height:1.55;margin-bottom:28px}
+.editorial-hero .primary-button,.editorial-hero .hero-secondary{font-size:21px;line-height:1.5}
+.editorial-hero .hero-disclaimer{font-size:16px;line-height:1.6;flex-wrap:wrap}
+@media(max-width:540px){.editorial-hero .hero-description{font-size:22px;line-height:1.5}.editorial-hero .primary-button,.editorial-hero .hero-secondary{font-size:20px}.editorial-hero .hero-disclaimer{font-size:14px;line-height:1.6}.hero-actions{gap:14px 22px}}
