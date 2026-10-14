@@ -1,0 +1,17 @@
+{
+  "name": "azyra-jus-360-site",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "build:3d": "esbuild src/scene.js --bundle --format=iife --target=es2020 --minify --outfile=balance-3d.js --legal-comments=linked"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "three": "0.186.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

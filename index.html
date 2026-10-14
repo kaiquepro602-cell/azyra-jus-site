@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#032c23">
+<meta name="description" content="Uma nova perspectiva para seu escritório. Conheça a Azyra Jus em uma experiência com balança 3D, gestão jurídica e demonstração interativa.">
+<title>Azyra Jus — Equilíbrio para sua próxima decisão</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script src="assets/vendor/gsap.min.js" defer></script><script src="assets/vendor/ScrollTrigger.min.js" defer></script><script src="config.js" defer></script><script src="app.js" defer></script><script src="motion.js" defer></script><link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="premium.css">
+<link rel="stylesheet" href="editorial.css">
+<noscript><style>#interactive-preview,.demo-toolbar,.resource-track,.gallery-controls,.balance-controls{display:none}.hero-copy{opacity:1!important;transform:none!important}</style></noscript>
+<script src="balance-3d.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#plataforma">Pular para a demonstração</a><div class="reading-progress" aria-hidden="true"><i id="reading-progress"></i></div>
+<header class="header" id="header"><a class="wordmark" href="#inicio" aria-label="Azyra Jus — início">AZYRA<img class="brand-stamp" src="assets/simbolo.jpeg" alt="" width="44" height="44"><span>JUS</span></a><nav class="desktop-nav" aria-label="Navegação principal"><a href="#plataforma">Plataforma</a><a href="#recursos">Recursos</a><a href="#visao">Nossa visão</a><a href="#contato">Contato</a></nav><div class="header-actions">
+<button class="motion-toggle" id="motion-toggle" aria-pressed="false" title="Reduzir as animações do site"><span class="motion-icon" aria-hidden="true">◉</span><span class="motion-label">Movimento</span></button><button class="access-link" data-access>Acessar plataforma <span aria-hidden="true">↗</span></button><button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="mega-menu">Menu <span class="hamburger" aria-hidden="true"><i></i><i></i></span></button>
+</div></header>
+<dialog class="mega-menu" id="mega-menu" aria-label="Menu do site"><div class="menu-top">
+<span>UMA NOVA PERSPECTIVA PARA O SEU ESCRITÓRIO</span><button class="close" data-close aria-label="Fechar menu">×</button>
+</div>
+<div class="menu-columns">
+<div>
+<small>CONHEÇA</small><a href="#plataforma">A plataforma ↗</a><a href="#visao">Nossa visão ↗</a><a href="#evolucao">O próximo capítulo ↗</a>
+</div>
+<div>
+<small>EXPLORE</small><button data-explore="clientes">Clientes e CRM</button><button data-explore="processos">Processos e documentos</button><button data-explore="agenda">Agenda e prazos</button><button data-explore="financeiro">Financeiro</button><button data-explore="chat">Atendimento</button><button data-explore="equipe">Equipe e auditoria</button>
+</div>
+<div>
+<small>INFORMAÇÕES</small><a href="#contato">Contato</a><a href="#perguntas">Perguntas frequentes</a><button data-privacy>Privacidade</button><div class="menu-note">Tecnologia que acompanha a prática jurídica.</div>
+</div>
+</div></dialog>
+<main>
+<section class="hero editorial-hero" id="inicio" aria-label="Azyra Jus — uma nova perspectiva">
+ <div class="hero-atmosphere" aria-hidden="true">
+<img src="assets/escritorio.webp" alt="" width="1600" height="900"><div class="hero-grid"></div>
+</div>
+ <div class="hero-topline">
+<span>GESTÃO JURÍDICA COM DIREÇÃO</span><span class="hero-edition">AZYRA JUS / 01</span>
+</div>
+ <div class="hero-copy">
+  <p class="eyebrow" id="hero-kicker">CLAREZA PARA CADA ESCOLHA</p>
+  <h1 id="hero-title">Equilíbrio para sua<br><em>próxima decisão.</em>
+</h1>
+  <p class="hero-description" id="hero-description">Clientes, processos, agenda e equipe.<br>Uma rotina conectada, com você no controle.</p>
+  <div class="hero-actions">
+<a class="line-button light primary-button" id="hero-link" href="#plataforma">Explorar a plataforma <span aria-hidden="true">↗</span></a><a class="hero-secondary" href="#visao">Nossa visão <span aria-hidden="true">↓</span></a>
+</div>
+  <p class="hero-disclaimer"><span class="status-dot" aria-hidden="true"></span>MVP em validação · Demonstração com dados fictícios</p>
+ </div>
+ <div class="balance-stage">
+  <div class="scene-coordinate" aria-hidden="true">A / EQUILÍBRIO EM PERSPECTIVA</div>
+  <div id="balance-viewport"><img id="balance-fallback" src="assets/balanca-referencia.webp" alt="Referência da balança dourada com barras de ouro" width="4000" height="4000"></div>
+  <div class="scene-caption">
+<span class="scene-mark" aria-hidden="true">360°</span><div>
+<p id="scene-help">Arraste para mudar de perspectiva.</p>
+<span>Um mesmo objeto. Novos pontos de vista.</span>
+</div>
+</div>
+  <div class="balance-controls" aria-label="Controles da balança 3D">
+<button data-turn="-1" aria-label="Girar vista 45 graus para a esquerda">←</button><button data-turn="1" aria-label="Girar vista 45 graus para a direita">→</button><button id="balance-reset" aria-label="Restaurar perspectiva inicial">Restaurar</button><button id="balance-pause" aria-pressed="false">Pausar balanço</button>
+</div>
+  <p id="scene-status" class="scene-status" aria-live="polite">Preparando a perspectiva 3D…</p>
+ </div>
+ <div class="hero-bottom">
+<span>A ROTINA MUDA.<br>O CONTEXTO ACOMPANHA.</span><a href="#visao" class="hero-scroll">DESCUBRA <span aria-hidden="true">↓</span></a><span class="hero-bottom-end">PRECISÃO<br>EM CADA DETALHE.</span>
+</div>
+</section><section class="vision-section cream" id="visao"><div class="vision-label">
+<p class="eyebrow">NOSSA VISÃO / SUA ROTINA</p>
+<div class="vision-image">
+<img src="assets/escritorio.webp" alt="Imagem conceitual da Azyra Jus: escritório com detalhes em verde, dourado e creme" loading="lazy" width="1600" height="900"><span>AZYRA JUS / UM NOVO CONTEXTO</span>
+</div>
+</div>
+<div class="vision-copy reveal">
+<h2>Mais espaço para advogar.<br><em>Mais clareza para gerir.</em>
+</h2>
+<p>A Azyra Jus nasce da rotina real de um escritório. Reúne informações, conecta a equipe e organiza o trabalho para que cada decisão tenha contexto.</p>
+<p>Cada etapa é desenvolvida, testada e revisada com quem utiliza a plataforma. A tecnologia acompanha a prática jurídica, mantendo o profissional no controle.</p>
+</div></section>
+<section class="preview-section cream" id="plataforma"><div class="section-heading reveal">
+<div>
+<p class="eyebrow">A PLATAFORMA / EM PRIMEIRA PESSOA</p>
+<h2>Veja sua rotina<br><em>ganhar clareza.</em>
+</h2>
+</div>
+<p>Explore uma demonstração da organização do escritório. Cada módulo, uma parte da sua rotina. Tudo com contexto.</p>
+</div>
+<div class="demo-toolbar">
+<div class="demo-status">
+<span class="status-dot" aria-hidden="true"></span>Experimente os módulos abaixo</div>
+<label for="demo-workspace">Contexto da prévia <select id="demo-workspace"><option value="escritorio">Escritório demonstrativo</option>
+<option value="particular">Carteira particular</option></select></label>
+</div>
+<div class="preview-frame reveal" id="interactive-preview">
+<div class="windowbar">
+<div class="window-dots">
+<i></i><i></i><i></i>
+</div>
+<span>AZYRA JUS / DEMONSTRAÇÃO</span><small>Dados fictícios</small>
+</div>
+<div class="app">
+<aside class="side" aria-label="Módulos demonstrativos"><div class="app-brand">AZYRA <span>JUS</span>
+</div>
+<button class="active" data-view="painel">◈ <span>Visão geral</span></button><button data-view="clientes">◎ <span>Clientes e CRM</span></button><button data-view="processos">▤ <span>Processos</span></button><button data-view="documentos">▱ <span>Documentos</span></button><button data-view="agenda">▦ <span>Agenda e prazos</span></button><button data-view="financeiro">◇ <span>Financeiro</span></button><button data-view="chat">◌ <span>Atendimento</span></button><button data-view="equipe">♧ <span>Equipe</span></button><button data-view="auditoria">◈ <span>Auditoria</span></button><div class="office">
+<span id="demo-office-name">ESCRITÓRIO DEMONSTRATIVO</span><span>Acesso individual · Equipe conectada</span>
+</div></aside><div class="app-main">
+<div class="apphead">
+<div>
+<p>SEU ESCRITÓRIO, EM PERSPECTIVA</p>
+<h3 id="viewtitle">Tudo começa com clareza.</h3>
+</div>
+<span class="avatar">AJ</span>
+</div>
+<div id="demo" role="region" aria-label="Conteúdo da demonstração" aria-live="polite" aria-atomic="true"></div>
+<p class="demo-note">Dados fictícios e contextos separados apenas nesta demonstração. Sem conexão com a plataforma real.</p>
+</div>
+</div>
+</div>
+<div id="video-preview" hidden>
+<video controls playsinline preload="metadata" aria-label="Apresentação da plataforma"></video><p>Vídeo demonstrativo da plataforma.</p>
+</div>
+<div class="under-preview">
+<span>01 / ORGANIZAR · CONECTAR · ACOMPANHAR</span><a href="#recursos">Conheça os recursos ↓</a>
+</div>
+<noscript><p class="no-script">Para explorar a demonstração interativa, ative o JavaScript no navegador. Você pode conhecer a visão e os recursos do produto nas outras seções desta página.</p></noscript></section>
+<section class="resource-section cream" id="recursos"><div class="section-heading reveal">
+<div>
+<p class="eyebrow">RECURSOS / CADA PARTE CONECTADA</p>
+<h2>Organize cada parte<br>do seu escritório.</h2>
+</div>
+<div class="gallery-controls">
+<button id="gallery-prev" aria-label="Recursos anteriores">←</button><button id="gallery-next" aria-label="Próximos recursos">→</button>
+</div>
+</div>
+<div class="resource-track" id="resource-track" tabindex="0" aria-label="Galeria de recursos" role="region"></div>
+<p class="gallery-hint">Explore cada recurso para conhecer a proposta. <span>← Deslize para descobrir →</span></p>
+<div class="gallery-progress" aria-hidden="true"><i id="gallery-progress"></i></div>
+<noscript><p class="no-script">Clientes e CRM · Processos e documentos · Agenda e prazos · Financeiro · Atendimento · Equipe e auditoria</p></noscript></section>
+<section class="brand-story" aria-label="Identidade Azyra Jus"><div class="brand-story-image"><img src="assets/simbolo.jpeg" alt="Símbolo original Azyra Jus em verde e dourado" loading="lazy" width="1254" height="1254"></div>
+<div class="brand-story-copy">
+<p class="eyebrow">PRECISÃO / IDENTIDADE / PROPÓSITO</p>
+<h2>Da primeira conversa<br><em>ao próximo passo.</em>
+</h2>
+<p>O que organiza a rotina também orienta as decisões. Uma plataforma construída para reunir contexto, aproximar a equipe e manter o profissional no controle.</p>
+<a class="line-button light" href="#recursos">Explore cada parte <span aria-hidden="true">↗</span></a>
+</div></section><section class="team-section" id="equipe"><div class="team-text reveal">
+<p class="eyebrow">TRABALHO COMPARTILHADO / ACESSO INDIVIDUAL</p>
+<h2>Uma equipe conectada.<br><em>Uma operação com contexto.</em>
+</h2>
+<p>O escritório é o ponto de encontro das informações. Cada pessoa participa com seu próprio acesso e com permissões adequadas à sua função.</p>
+<ul>
+<li>Administradores e funcionários com acessos por função.</li>
+<li>Informações compartilhadas dentro do escritório.</li>
+<li>Registros de ações e responsáveis na auditoria.</li>
+<li>Atendimento próximo da rotina de gestão.</li>
+</ul>
+<a href="#plataforma" class="line-button light">Explorar a demonstração <span>↗</span></a>
+</div>
+<div class="team-visual reveal">
+<img src="assets/escritorio.webp" alt="Ambiente ilustrativo de escritório com materiais em verde esmeralda, dourado e creme" loading="lazy"><div class="team-overlay">
+<span class="little-avatar">A</span><span class="little-avatar">B</span><span class="little-avatar">C</span><div>
+<strong>O trabalho se conecta.</strong><small>Você continua no controle.</small>
+</div>
+</div>
+<span class="visual-caption">IMAGEM CONCEITUAL · AZYRA JUS</span>
+</div></section>
+<section class="evolution-section" id="evolucao"><div class="section-heading reveal">
+<div>
+<p class="eyebrow">O PRÓXIMO CAPÍTULO</p>
+<h2>O próximo nível<br><em>é construído.</em>
+</h2>
+</div>
+<p>Uma evolução por etapas, orientada pela rotina de quem utiliza a plataforma.</p>
+</div>
+<div class="evolution-grid" data-motion-group="cards">
+<article class="evolution-card reveal"><div class="evolution-art art-operation">
+<div class="step-lines">
+<i></i><i></i><i></i><i></i>
+</div>
+<span>01</span>
+</div>
+<div class="stage-tag">MVP EM VALIDAÇÃO</div>
+<h3>Organização da operação</h3>
+<p>Clientes, processos, documentos, agenda, financeiro e equipe reunidos na rotina do escritório.</p></article><article class="evolution-card reveal"><div class="evolution-art art-chat">
+<div class="bubble">Uma conversa.<br>Mais contexto.</div>
+<div class="bubble reply">Um próximo passo.</div>
+<span>02</span>
+</div>
+<div class="stage-tag">INTEGRAÇÃO EM PREPARAÇÃO</div>
+<h3>Atendimento integrado</h3>
+<p>Mensagens de texto validadas com a API oficial do WhatsApp em número de teste. Número real e produção em preparação.</p></article><article class="evolution-card reveal"><div class="evolution-art art-ai">
+<div class="ai-orbit">
+<i></i><i></i>
+</div>
+<span>03</span>
+</div>
+<div class="stage-tag">EVOLUÇÃO PLANEJADA</div>
+<h3>IA de apoio e automações</h3>
+<p>Apoio à organização e ao acompanhamento, com supervisão humana e o profissional no controle.</p></article>
+</div></section>
+<section class="faq-section cream" id="perguntas"><div>
+<p class="eyebrow">PERGUNTAS FREQUENTES</p>
+<h2>Clareza também<br>nas respostas.</h2>
+</div>
+<div class="faq-list">
+<details><summary>A plataforma já está disponível?<span>+</span></summary><p>A Azyra Jus está em fase MVP e validação piloto. Este site apresenta uma demonstração visual. A abertura para novos escritórios será definida após os testes.</p></details><details><summary>Minha equipe pode trabalhar junta?<span>+</span></summary><p>Sim. O projeto utiliza contas individuais e permissões por função para compartilhar o trabalho dentro do escritório.</p></details><details><summary>O WhatsApp já está conectado?<span>+</span></summary><p>O envio e o recebimento de mensagens de texto foram validados com um número de teste da API oficial da Meta. A conexão do número real e a infraestrutura de produção estão em preparação.</p></details><details><summary>Os exemplos mostram dados reais?<span>+</span></summary><p>Não. Todos os nomes, valores e exemplos desta página são fictícios. A prévia não está conectada ao banco de dados do escritório.</p></details>
+</div></section>
+<section class="contact-section cream" id="contato"><p class="eyebrow">GESTÃO COM PROPÓSITO</p>
+<h2><span>Uma nova perspectiva.<br><em>O próximo passo é seu.</em></span></h2>
+<div class="contact-actions">
+<a class="line-button" href="#plataforma">Conhecer a Azyra Jus <span>↗</span></a><button class="line-button" id="contact-button">Informações de contato <span>↗</span></button>
+</div></section>
+</main><footer class="footer cream"><div class="footer-top">
+<div>
+<a class="wordmark" href="#inicio">AZYRA<img class="brand-stamp" src="assets/simbolo.jpeg" alt="" width="44" height="44"><span>JUS</span></a><p>Gestão jurídica com direção.<br>Uma solução Azyra Tech.</p>
+</div>
+<div>
+<small>DESCUBRA</small><a href="#plataforma">A plataforma</a><a href="#visao">Nossa visão</a><a href="#evolucao">Evolução do produto</a>
+</div>
+<div>
+<small>EXPLORE</small><a href="#recursos">Recursos</a><a href="#equipe">Equipe e auditoria</a><a href="#perguntas">Perguntas frequentes</a>
+</div>
+<div>
+<small>INFORMAÇÕES</small><a href="#contato">Contato</a><button data-privacy>Privacidade</button><a href="#inicio">Voltar ao início ↑</a>
+</div>
+</div>
+<div class="footer-bottom">
+<span>© 2026 Azyra Jus</span><span>MVP em desenvolvimento e validação</span><span>Precisão em cada detalhe.</span>
+</div></footer>
+<dialog class="detail-dialog" id="detail-dialog" aria-labelledby="detail-title"><button class="close" data-close aria-label="Fechar detalhes">×</button><div id="detail-art" class="detail-art"></div>
+<div class="detail-content">
+<p class="eyebrow" id="detail-label">RECURSO / AZYRA JUS</p>
+<h2 id="detail-title"></h2>
+<p id="detail-description"></p>
+<div id="detail-example"></div>
+<button class="line-button" id="detail-preview">Explorar na prévia <span>↗</span></button>
+</div></dialog>
+<dialog class="info-dialog" id="info-dialog" aria-labelledby="info-title"><button class="close" data-close aria-label="Fechar">×</button><p class="eyebrow">AZYRA JUS</p>
+<h2 id="info-title"></h2>
+<p id="info-text"></p>
+<a id="info-link" class="line-button" href="#plataforma">Explorar a demonstração <span>↗</span></a></dialog>
+</body>
+</html>
