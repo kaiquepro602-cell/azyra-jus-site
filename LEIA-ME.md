@@ -68,7 +68,7 @@ Esses testes não verificam GPU, layout renderizado ou desempenho de navegador. 
 
 ## Configurações e código
 
-Os endereços públicos ficam em `config.js`. Plataforma, WhatsApp, e-mail e política de privacidade continuam vazios, como no site original. Os botões apresentam o estágio de validação quando o canal não foi configurado. Não foram inventados links comerciais ou integrações.
+Os endereços públicos ficam em `config.js`. Plataforma, WhatsApp, e-mail e política de privacidade continuam vazios, como no site original. O Instagram oficial é https://instagram.com/azyrajus_. Os botões de WhatsApp usam `contactWhatsApp` quando houver um número válido, com país e DDD, somente dígitos. Enquanto estiver vazio, o diálogo oferece o Instagram como alternativa, sem inventar um telefone. Não foram inventados links comerciais ou integrações.
 
 Os dados da demonstração são fictícios. A página não tem conexão ao backend do SaaS.
 
@@ -79,3 +79,9 @@ Se modificar os fontes 3D, execute `npm install` e depois `npm run build:3d` par
 ## Créditos
 
 Three.js 0.186.1, licença MIT em `assets/vendor/THREE-LICENSE.txt` e aviso no bundle. GSAP e ScrollTrigger 3.15.0, cabeçalhos de licença preservados. Diretrizes Motion Design: LottieFiles. Workflow de reconstrução: img2threejs v2.0.0.
+
+## Navegação e contato
+
+A galeria de recursos usa deslize nativo no celular, arraste com mouse, setas/Home/End no teclado e uma barra de posição ajustável, sem botões de setas. O botão flutuante de voltar ao topo aparece após a primeira parte da página. Rolagens acionadas pelos controles respeitam a preferência de movimento reduzido. O rodapé inclui o perfil oficial no Instagram.
+
+Verificação desta revisão: interações e links em ambiente DOM, sem captura visual de navegador.
