@@ -24,7 +24,14 @@ function octagonalFoot(width,height,depth){
  const bevel=.012;
  const geometry=new THREE.ExtrudeGeometry(shape,{depth:height-2*bevel,steps:1,bevelEnabled:true,bevelSize:bevel,bevelThickness:bevel,bevelSegments:3,curveSegments:1});
  geometry.rotateX(-Math.PI/2);geometry.translate(0,-height/2+bevel,0);geometry.scale(1,1,depth/width);
- return geometry;
+ const path=new THREE.CurvePath();
+ const ringPoints=Array.from({length:8},(_,i)=>{
+  const a=Math.PI/8+i*Math.PI/4,r=width/2+.014;
+  return new THREE.Vector3(Math.cos(a)*r,-height*.23,Math.sin(a)*r*depth/width);
+ });
+ for(let i=0;i<8;i++)path.add(new THREE.LineCurve3(ringPoints[i],ringPoints[(i+1)%8]));
+ const trim=new THREE.TubeGeometry(path,64,.007,6,true);
+ return merge([geometry,trim]);
 }
 
 function linkedChain(length){
@@ -62,6 +69,8 @@ function bullionHallmarks(){
    pieces.push(new THREE.TubeGeometry(curve,Math.max(6,pts.length*3),.0021,4,false));
   }));
  }
+ const borderPoints=[[-.24,-.13],[.24,-.13],[.27,-.10],[.27,.055],[.24,.08],[-.24,.08],[-.27,.055],[-.27,-.10]].map(([x,z])=>new THREE.Vector3(x,.141,z));
+ pieces.push(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(borderPoints,true,'centripetal'),64,.0032,6,true));
  return merge(pieces);
 }
 
@@ -73,7 +82,7 @@ export function refineBalanceModel(model){
   stamp:new THREE.MeshPhysicalMaterial({color:0xa67d25,metalness:1,roughness:.32,envMapIntensity:.9})
  };
  const oldMaterials=new Set(),oldTextures=new Set();
- const stats={parts:0,links:0,triangles:0};
+ const stats={parts:0,links:0,triangles:0,suspensionEyes:0,pivotHeads:0};
  model.traverse(mesh=>{
   if(!mesh.isMesh)return;
   const id=mesh.name,component=mesh.userData.sculptComponent;
@@ -88,7 +97,7 @@ export function refineBalanceModel(model){
    const profile=[[.13,.22],[.16,.27],[.19,.32],[.23,.4],[.265,.51],[.28,.61],[.265,.69],[.21,.77],[.155,.87],[.15,.94],[.15,1.48],[.155,1.6],[.2,1.67],[.23,1.75],[.24,1.82],[.225,1.91],[.175,2.02],[.155,2.07],[.15,2.14],[.15,3.52],[.155,3.61],[.2,3.68],[.24,3.76],[.25,3.83],[.23,3.93],[.17,4.02],[.15,4.11],[.15,4.59]];
    geometry=lathe(profile.map(([r,y])=>[r,y-2.3]),96);
   }else if(id.startsWith('collar-')){
-   geometry=lathe([[.15,-.1],[.185,-.1],[.215,-.095],[.24,-.077],[.253,-.049],[.257,0],[.253,.049],[.24,.077],[.215,.095],[.185,.1],[.15,.1]],80);material=materials.edge;
+   geometry=lathe([[.15,-.1],[.185,-.1],[.215,-.095],[.24,-.077],[.255,-.049],[.255,-.043],[.239,-.033],[.239,-.024],[.254,-.014],[.258,0],[.254,.014],[.239,.024],[.239,.033],[.255,.043],[.255,.049],[.24,.077],[.215,.095],[.185,.1],[.15,.1]],48);material=materials.edge;
   }else if(id==='finial-neck'){
    geometry=lathe([[.145,-.325],[.17,-.29],[.195,-.22],[.18,-.16],[.15,-.13],[.16,-.09],[.17,-.065],[.14,-.035],[.11,.035],[.095,.09],[.11,.14],[.14,.2],[.17,.26],[.18,.325]],80);
   }else if(id==='finial'){
@@ -104,9 +113,24 @@ export function refineBalanceModel(model){
    }
    geometry=merge(parts);
   }else if(id==='beam-center'){
-   geometry=lathe([[0,-.57],[.09,-.57],[.113,-.555],[.126,-.53],[.13,-.5],[.13,.5],[.126,.53],[.113,.555],[.09,.57],[0,.57]],80);material=materials.edge;
+   const sleeve=lathe([[0,-.57],[.09,-.57],[.113,-.555],[.126,-.53],[.13,-.5],[.13,.5],[.126,.53],[.113,.555],[.09,.57],[0,.57]],80);
+   const pieces=[sleeve];
+   const axle=new THREE.CylinderGeometry(.044,.044,.54,24);axle.rotateX(Math.PI/2);pieces.push(axle);
+   for(const side of [-1,1]){
+    const head=new THREE.CylinderGeometry(.054,.061,.042,32);head.rotateX(side*Math.PI/2);head.translate(0,0,side*.27);pieces.push(head);
+    const ring=new THREE.TorusGeometry(.046,.008,8,32);ring.translate(0,0,side*.286);pieces.push(ring);
+    stats.pivotHeads++;
+   }
+   geometry=merge(pieces);material=materials.edge;
   }else if(id.startsWith('pan-')){
-   geometry=lathe([[0,-.165],[.25,-.165],[.42,-.154],[.53,-.128],[.62,-.082],[.69,-.025],[.739,.039],[.765,.083],[.767,.095],[.757,.105],[.745,.1],[.721,.061],[.681,.002],[.615,-.057],[.53,-.101],[.42,-.124],[.25,-.13],[0,-.13]],96);
+   const bowl=lathe([[0,-.165],[.25,-.165],[.42,-.154],[.53,-.128],[.62,-.082],[.69,-.025],[.739,.039],[.765,.083],[.767,.095],[.757,.105],[.745,.1],[.721,.061],[.681,.002],[.615,-.057],[.53,-.101],[.42,-.124],[.25,-.13],[0,-.13]],96);
+   const pieces=[bowl];
+   for(let i=0;i<3;i++){
+    const angle=Math.PI/6+i*Math.PI*2/3;
+    const eye=new THREE.TorusGeometry(.028,.009,8,24);eye.rotateY(-angle);eye.translate(.72*Math.cos(angle),.102,.72*Math.sin(angle));pieces.push(eye);
+    stats.suspensionEyes++;
+   }
+   geometry=merge(pieces);
   }else if(id.startsWith('rim-')){
    geometry=new THREE.TorusGeometry(.756,.012,10,96);material=materials.edge;
   }else if(id.startsWith('chain-')){

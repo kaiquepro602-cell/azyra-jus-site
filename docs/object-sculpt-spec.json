@@ -6935,7 +6935,7 @@
     "approved": false,
     "date": "2026-10-14",
     "source": "src/refineBalanceModel.js",
-    "sourceSha256": "da927abf25e54e48ecf00b0ddf7ece4c9a93a8738125698671371b54e7d0102f",
+    "sourceSha256": "2194190b751a3cebb0e8c4cb9efc7f988e669bbf2f536c78dd40d2031e263b44",
     "parameters": {
       "spindleProfileWorldY": [
         [
@@ -7071,15 +7071,47 @@
               -0.077
             ],
             [
-              0.253,
+              0.255,
               -0.049
             ],
             [
-              0.257,
+              0.255,
+              -0.043
+            ],
+            [
+              0.239,
+              -0.033
+            ],
+            [
+              0.239,
+              -0.024
+            ],
+            [
+              0.254,
+              -0.014
+            ],
+            [
+              0.258,
               0
             ],
             [
-              0.253,
+              0.254,
+              0.014
+            ],
+            [
+              0.239,
+              0.024
+            ],
+            [
+              0.239,
+              0.033
+            ],
+            [
+              0.255,
+              0.043
+            ],
+            [
+              0.255,
               0.049
             ],
             [
@@ -7099,7 +7131,7 @@
               0.1
             ]
           ],
-          "segments": 80
+          "segments": 48
         },
         {
           "points": [
@@ -7161,128 +7193,6 @@
             ]
           ],
           "segments": 80
-        },
-        {
-          "points": [
-            [
-              0,
-              -0.57
-            ],
-            [
-              0.09,
-              -0.57
-            ],
-            [
-              0.113,
-              -0.555
-            ],
-            [
-              0.126,
-              -0.53
-            ],
-            [
-              0.13,
-              -0.5
-            ],
-            [
-              0.13,
-              0.5
-            ],
-            [
-              0.126,
-              0.53
-            ],
-            [
-              0.113,
-              0.555
-            ],
-            [
-              0.09,
-              0.57
-            ],
-            [
-              0,
-              0.57
-            ]
-          ],
-          "segments": 80
-        },
-        {
-          "points": [
-            [
-              0,
-              -0.165
-            ],
-            [
-              0.25,
-              -0.165
-            ],
-            [
-              0.42,
-              -0.154
-            ],
-            [
-              0.53,
-              -0.128
-            ],
-            [
-              0.62,
-              -0.082
-            ],
-            [
-              0.69,
-              -0.025
-            ],
-            [
-              0.739,
-              0.039
-            ],
-            [
-              0.765,
-              0.083
-            ],
-            [
-              0.767,
-              0.095
-            ],
-            [
-              0.757,
-              0.105
-            ],
-            [
-              0.745,
-              0.1
-            ],
-            [
-              0.721,
-              0.061
-            ],
-            [
-              0.681,
-              0.002
-            ],
-            [
-              0.615,
-              -0.057
-            ],
-            [
-              0.53,
-              -0.101
-            ],
-            [
-              0.42,
-              -0.124
-            ],
-            [
-              0.25,
-              -0.13
-            ],
-            [
-              0,
-              -0.13
-            ]
-          ],
-          "segments": 96
         }
       ],
       "octagonalFoot": {
@@ -7291,7 +7201,14 @@
         "bevelSize": 0.012,
         "bevelThickness": 0.012,
         "bevelSegments": 3,
-        "dimensions": "component.dimensions; depth/width scale"
+        "dimensions": "component.dimensions; depth/width scale",
+        "trim": {
+          "radiusOffset": 0.014,
+          "heightFactor": -0.23,
+          "tubeRadius": 0.007,
+          "pathSegments": 64,
+          "radialSegments": 6
+        }
       },
       "chains": {
         "linkEllipseRadii": [
@@ -7353,6 +7270,46 @@
           "bar-left": 1.38,
           "bar-left-second": 1.643,
           "bar-right": 1.63
+        },
+        "hallmarkFrame": {
+          "path": [
+            [
+              -0.24,
+              -0.13
+            ],
+            [
+              0.24,
+              -0.13
+            ],
+            [
+              0.27,
+              -0.1
+            ],
+            [
+              0.27,
+              0.055
+            ],
+            [
+              0.24,
+              0.08
+            ],
+            [
+              -0.24,
+              0.08
+            ],
+            [
+              -0.27,
+              0.055
+            ],
+            [
+              -0.27,
+              -0.1
+            ]
+          ],
+          "surfaceY": 0.141,
+          "tubeRadius": 0.0032,
+          "tubularSegments": 64,
+          "radialSegments": 6
         }
       },
       "materials": {
@@ -7376,6 +7333,35 @@
           "metalness": 1,
           "roughness": 0.32
         }
+      },
+      "pivot": {
+        "shaftRadius": 0.044,
+        "shaftLength": 0.54,
+        "shaftSegments": 24,
+        "headTopRadius": 0.054,
+        "headBottomRadius": 0.061,
+        "headDepth": 0.042,
+        "headSegments": 32,
+        "headZ": [
+          -0.27,
+          0.27
+        ],
+        "beadMajorRadius": 0.046,
+        "beadMinorRadius": 0.008,
+        "beadZ": [
+          -0.286,
+          0.286
+        ]
+      },
+      "bowlSuspensionEyes": {
+        "perBowl": 3,
+        "majorRadius": 0.028,
+        "minorRadius": 0.009,
+        "radialSegments": 8,
+        "tubularSegments": 24,
+        "anchorRadius": 0.72,
+        "anchorY": 0.102,
+        "firstAngle": 0.5235987755982988
       }
     },
     "evidence": {
@@ -7388,7 +7374,7 @@
         270
       ],
       "parts": 26,
-      "triangles": 88324,
+      "triangles": 96612,
       "interactionTests": "DOM with real Three geometry and OrbitControls; mocked renderer",
       "previousRevisionBrowserScreenshotsReviewed": true,
       "updatedRevisionBrowserVerified": false
@@ -7432,9 +7418,16 @@
       },
       "layout": {
         "desktopSide": "right edge",
-        "defaultWidth": "clamp(300px,21vw,440px)",
+        "defaultWidth": "clamp(320px,23vw,480px)",
         "right": "1%",
-        "instructions": "screen reader only"
+        "instructions": "screen reader only",
+        "desktopTop": "100px",
+        "desktopBottom": "225px",
+        "smallDesktopTop": "120px",
+        "smallDesktopBottom": "235px",
+        "tabletTop": "90px",
+        "mobileTop": "78px",
+        "desktopCentreShiftPx": -80
       },
       "motionPreference": "Desktop autoplay requested by user; current explicit session choice overrides default. Touch devices default to system preference; legacy pause key is ignored."
     },
@@ -7452,6 +7445,7 @@
       "focusBlocksRotation": false,
       "legacyPauseIgnored": true,
       "sessionChoiceKey": "azyra-motion-choice-v3"
-    }
+    },
+    "detailRevisionNotes": "Turned collar grooves, raised foot perimeter trim, through axle and visible end caps, six dish suspension eyes and framed bullion hallmarks. Added hardware and ornaments are procedural interpretations, not proven reference-exact features. No later sculpt pass unlocked."
   }
 }

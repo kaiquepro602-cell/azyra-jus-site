@@ -27,7 +27,7 @@ Esta versão não foi publicada automaticamente.
 - Conforme a direção solicitada, o desktop começa com movimento ativo. Em dispositivos de toque, a preferência do sistema continua sendo o padrão. O botão Movimento permite pausar ou ativar explicitamente as animações, com a escolha guardada na sessão atual. A antiga configuração de pausa foi substituída para não bloquear o primeiro carregamento desta revisão.
 - A renderização ambiente para fora da área visível e quando a aba está oculta.
 
-O painel visual abaixo da balança, a legenda vertical, os textos decorativos no fim da abertura e a legenda de visão marcados nas capturas foram removidos. As instruções continuam disponíveis para leitores de tela. A posição da balança fica mais próxima da margem direita; o enquadramento inicial destaca a profundidade dos pratos. Sombras reais entre as peças e sob a base reforçam o volume, sem adicionar imagens do objeto.
+O painel visual abaixo da balança, a legenda vertical, os textos decorativos no fim da abertura e a legenda de visão marcados nas capturas foram removidos. As instruções continuam disponíveis para leitores de tela. A posição da balança fica mais próxima da margem direita, com o centro aproximadamente 80 pixels mais alto no desktop e escala visual um pouco maior; o enquadramento inicial destaca a profundidade dos pratos. Sombras reais entre as peças e sob a base reforçam o volume, sem adicionar imagens do objeto.
 
 ## Tipografia
 
@@ -41,7 +41,7 @@ Títulos e destaques usam Playfair Display, com pesos 600 e 700 e itálico próp
 
 ## Estado da reconstrução
 
-O ZIP do objeto continha JPG e EPS, sem GLB/OBJ. O modelo foi reconstruído a partir da imagem em código Three.js. A revisão de 14/10/2026 mantém 26 partes e possui 88.324 triângulos, incluindo 156 elos ovais alternados nas seis correntes, encaixes nas extremidades do braço, base octogonal com chanfros, perfis torneados, pratos com maior concavidade e barras chanfradas com inscrições em relevo. A altura das barras foi ajustada para que se apoiem nos pratos.
+O ZIP do objeto continha JPG e EPS, sem GLB/OBJ. O modelo foi reconstruído a partir da imagem em código Three.js. A revisão de 14/10/2026 mantém 26 partes e possui 96.612 triângulos, incluindo 156 elos ovais alternados nas seis correntes, encaixes nas extremidades do braço, base octogonal com chanfros, perfis torneados, pratos com maior concavidade e barras chanfradas com inscrições em relevo. A altura das barras foi ajustada para que se apoiem nos pratos. A nova revisão acrescenta frisos na base, sulcos torneados nos anéis, eixo de pivô com duas cabeças, seis olhais nos pratos e molduras nas inscrições das barras. Os pequenos elementos mecânicos e ornamentais são interpretações procedurais; não há alegação de réplica exata.
 
 É uma **prévia aproximada de reconstrução**, ainda sem aprovação do primeiro estágio de escultura. O verso é inferido e as inscrições são aproximações em relevo. A correção manual do modelo atual fica em `src/refineBalanceModel.js`; seus parâmetros estão preservados em `docs/object-sculpt-spec.json`, no campo `websiteRefinement`. Não é uma réplica fiel nem um modelo com todos os passes da skill aprovados.
 

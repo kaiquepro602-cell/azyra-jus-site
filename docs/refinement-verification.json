@@ -6,7 +6,14 @@
     "chainLinkOpenCentresAndWireRaycasts": "PASS",
     "parts": 26,
     "links": 156,
-    "triangles": 88324
+    "triangles": 96612,
+    "addedDetails": [
+      "turned collar grooves",
+      "two foot perimeter trims",
+      "through axle and two pivot heads",
+      "six bowl suspension eyes",
+      "three bullion hallmark frames"
+    ]
   },
   "interaction": [
     {
@@ -118,5 +125,10 @@
     "touch devices do not auto-rotate",
     "fallback without WebGL",
     "works without GSAP"
-  ]
+  ],
+  "layout": {
+    "desktopCentreShiftPixels": -80,
+    "desktopWidth": "clamp(320px,23vw,480px)",
+    "browserVisualVerified": false
+  }
 }
