@@ -7406,18 +7406,16 @@
         12
       ],
       "autoRotation": {
-        "desktopMediaQuery": "(hover: hover) and (pointer: fine)",
+        "desktopMediaQuery": "(min-width: 951px), (any-hover: hover) and (any-pointer: fine)",
         "axis": "Y",
         "direction": "clockwise viewed from above",
-        "turnSeconds": 80,
+        "turnSeconds": 45,
         "resumeDelayMilliseconds": 1200,
         "speedEasingSeconds": 0.8,
         "pauseOn": [
           "drag",
-          "hover",
-          "focus",
           "Space",
-          "reduced motion",
+          "explicit Motion-button pause",
           "hidden document",
           "outside viewport"
         ]
@@ -7438,7 +7436,7 @@
         "right": "1%",
         "instructions": "screen reader only"
       },
-      "motionPreference": "System default respected; explicit Motion-button choice takes precedence for the session"
+      "motionPreference": "Desktop autoplay requested by user; current explicit session choice overrides default. Touch devices default to system preference; legacy pause key is ignored."
     },
     "typography": {
       "displayFamily": "Playfair Display",
@@ -7447,6 +7445,13 @@
       "bodyFamily": "Manrope",
       "source": "official google/fonts repository; complete font WOFF2 conversion",
       "remoteRequests": false
+    },
+    "automaticRotationFix": {
+      "startsOnDesktop": true,
+      "hoverBlocksRotation": false,
+      "focusBlocksRotation": false,
+      "legacyPauseIgnored": true,
+      "sessionChoiceKey": "azyra-motion-choice-v3"
     }
   }
 }

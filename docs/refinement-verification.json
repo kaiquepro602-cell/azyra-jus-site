@@ -10,44 +10,84 @@
   },
   "interaction": [
     {
-      "libraries": true,
-      "reduced": false,
-      "failure": false,
       "desktop": true,
+      "systemReduced": false,
+      "legacyPause": false,
+      "savedChoice": null,
+      "failure": false,
+      "libraries": true,
       "result": "PASS",
-      "verification": "DOM, real Three geometry / OrbitControls, mocked WebGL renderer; not GPU/browser QA"
+      "limit": "Real Three geometry and OrbitControls; mocked WebGL renderer. No GPU/browser visual verification."
     },
     {
-      "libraries": true,
-      "reduced": false,
+      "desktop": true,
+      "systemReduced": false,
+      "legacyPause": true,
+      "savedChoice": null,
       "failure": false,
+      "libraries": true,
+      "result": "PASS",
+      "limit": "Real Three geometry and OrbitControls; mocked WebGL renderer. No GPU/browser visual verification."
+    },
+    {
+      "desktop": true,
+      "systemReduced": true,
+      "legacyPause": true,
+      "savedChoice": null,
+      "failure": false,
+      "libraries": true,
+      "result": "PASS",
+      "limit": "Real Three geometry and OrbitControls; mocked WebGL renderer. No GPU/browser visual verification."
+    },
+    {
+      "desktop": true,
+      "systemReduced": false,
+      "legacyPause": false,
+      "savedChoice": "paused",
+      "failure": false,
+      "libraries": true,
+      "result": "PASS",
+      "limit": "Real Three geometry and OrbitControls; mocked WebGL renderer. No GPU/browser visual verification."
+    },
+    {
       "desktop": false,
-      "result": "PASS",
-      "verification": "DOM, real Three geometry / OrbitControls, mocked WebGL renderer; not GPU/browser QA"
-    },
-    {
-      "libraries": true,
-      "reduced": true,
+      "systemReduced": false,
+      "legacyPause": false,
+      "savedChoice": null,
       "failure": false,
-      "desktop": true,
+      "libraries": true,
       "result": "PASS",
-      "verification": "DOM, real Three geometry / OrbitControls, mocked WebGL renderer; not GPU/browser QA"
+      "limit": "Real Three geometry and OrbitControls; mocked WebGL renderer. No GPU/browser visual verification."
     },
     {
+      "desktop": false,
+      "systemReduced": true,
+      "legacyPause": false,
+      "savedChoice": null,
+      "failure": false,
       "libraries": true,
-      "reduced": false,
+      "result": "PASS",
+      "limit": "Real Three geometry and OrbitControls; mocked WebGL renderer. No GPU/browser visual verification."
+    },
+    {
+      "desktop": true,
+      "systemReduced": false,
+      "legacyPause": false,
+      "savedChoice": null,
       "failure": true,
-      "desktop": true,
+      "libraries": true,
       "result": "PASS",
-      "verification": "DOM, real Three geometry / OrbitControls, mocked WebGL renderer; not GPU/browser QA"
+      "limit": "Real Three geometry and OrbitControls; mocked WebGL renderer. No GPU/browser visual verification."
     },
     {
-      "libraries": false,
-      "reduced": false,
-      "failure": false,
       "desktop": true,
+      "systemReduced": false,
+      "legacyPause": false,
+      "savedChoice": null,
+      "failure": false,
+      "libraries": false,
       "result": "PASS",
-      "verification": "DOM, real Three geometry / OrbitControls, mocked WebGL renderer; not GPU/browser QA"
+      "limit": "Real Three geometry and OrbitControls; mocked WebGL renderer. No GPU/browser visual verification."
     }
   ],
   "background": {
@@ -68,14 +108,15 @@
   },
   "previousRevisionUserBrowserCapturesReviewed": true,
   "automaticRotationChecks": [
-    "clockwise on desktop",
-    "no automatic yaw on touch",
-    "stops for reduced motion",
-    "hover and focus pause",
-    "smooth delayed restart",
-    "Space pause/resume and key-repeat guard",
-    "360 degree manual orbit",
-    "font-ready ScrollTrigger refresh",
-    "system reduced-motion default and explicit Motion-button opt-in"
+    "desktop starts clockwise automatically",
+    "legacy pause does not suppress autoplay",
+    "desktop autoplay with reduced system default as explicitly requested",
+    "hover and focus do not block autoplay",
+    "drag temporarily pauses; release resumes while focus remains",
+    "explicit session pause is honoured",
+    "Motion button clears keyboard pause when resumed",
+    "touch devices do not auto-rotate",
+    "fallback without WebGL",
+    "works without GSAP"
   ]
 }

@@ -1,8 +1,12 @@
 'use strict';
 (()=>{
  const g=window.gsap,preference=matchMedia('(prefers-reduced-motion: reduce)'),button=document.querySelector('#motion-toggle');
- let manual=null,context,media,observer,frame=0,cleanups=[];
- try{const saved=sessionStorage.getItem('azyra-reduced-motion');if(saved==='true')manual=true;else if(saved==='false')manual=false;}catch{}
+ // Desktop autoplay is the requested default. Only a new explicit choice can
+ // pause it; do not inherit the obsolete pause flag from earlier previews.
+ const desktop=matchMedia('(min-width: 951px), (any-hover: hover) and (any-pointer: fine)').matches;
+ const choiceKey='azyra-motion-choice-v3';
+ let manual=desktop?false:null,context,media,observer,frame=0,cleanups=[];
+ try{const saved=sessionStorage.getItem(choiceKey);if(saved==='paused')manual=true;else if(saved==='active')manual=false;}catch{}
  const reduced=()=>manual??preference.matches;
  window.AzyraMotion={get reduced(){return reduced();}};
  function progress(){const max=document.documentElement.scrollHeight-innerHeight;document.querySelector('#reading-progress').style.transform=`scaleX(${max>0?Math.min(1,Math.max(0,scrollY/max)):0})`;}
@@ -29,7 +33,7 @@
    document.querySelectorAll('dialog').forEach(dialog=>{const mutation=new MutationObserver(self.add(null,()=>{if(dialog.open)g.fromTo(dialog,{opacity:0,y:14},{opacity:1,y:0,duration:.3,clearProps:'opacity,transform'});}));mutation.observe(dialog,{attributes:true,attributeFilter:['open']});cleanups.push(()=>mutation.disconnect());});
   },document.body);
  }
- button.addEventListener('click',()=>{manual=!reduced();try{sessionStorage.setItem('azyra-reduced-motion',String(manual))}catch{}build();});preference.addEventListener('change',build);
+ button.addEventListener('click',()=>{manual=!reduced();try{sessionStorage.setItem(choiceKey,manual?'paused':'active')}catch{}build();});preference.addEventListener('change',build);
  addEventListener('scroll',progress,{passive:true});addEventListener('resize',progress,{passive:true});document.addEventListener('azyra:view',progress);build();progress();
  addEventListener('pagehide',e=>{if(e.persisted)return;cleanups.forEach(fn=>fn());observer?.disconnect();cancelAnimationFrame(frame);media?.revert();context?.revert();});
 })();

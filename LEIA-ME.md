@@ -22,9 +22,9 @@ Esta versão não foi publicada automaticamente.
 - Arraste horizontalmente com o mouse ou com o dedo para explorar os ângulos da balança.
 - As setas do teclado giram a vista em incrementos de 45 graus, sem limite horizontal.
 - Focalize o objeto com Tab e use as setas do teclado. Home restaura a vista inicial.
-- Em computadores com mouse, o objeto gira automaticamente no sentido horário ao redor do eixo vertical, com uma volta em aproximadamente 80 segundos e movimento ambiente discreto. Em dispositivos de toque, o giro é manual. Base, coluna, braço, pratos e barras são malhas tridimensionais.
-- Passe o mouse, focalize ou arraste o objeto para suspender o giro automático. Ele retorna suavemente após a interação. Espaço pausa ou retoma o movimento; a rotação manual continua disponível.
-- A preferência de movimento reduzido do sistema é respeitada por padrão. O botão Movimento permite escolher explicitamente entre ativar e pausar as animações; essa escolha vale para a sessão e também controla o giro da balança.
+- Em computadores com mouse, o objeto gira automaticamente no sentido horário ao redor do eixo vertical, com uma volta em aproximadamente 45 segundos e movimento ambiente discreto. Em dispositivos de toque, o giro é manual. Base, coluna, braço, pratos e barras são malhas tridimensionais.
+- Passe o mouse ou focalize o objeto sem interromper o giro. Arrastar suspende temporariamente a rotação; ela retorna suavemente após soltar, mesmo se o foco continuar no canvas. Espaço pausa ou retoma o movimento; a rotação manual continua disponível.
+- Conforme a direção solicitada, o desktop começa com movimento ativo. Em dispositivos de toque, a preferência do sistema continua sendo o padrão. O botão Movimento permite pausar ou ativar explicitamente as animações, com a escolha guardada na sessão atual. A antiga configuração de pausa foi substituída para não bloquear o primeiro carregamento desta revisão.
 - A renderização ambiente para fora da área visível e quando a aba está oculta.
 
 O painel visual abaixo da balança, a legenda vertical, os textos decorativos no fim da abertura e a legenda de visão marcados nas capturas foram removidos. As instruções continuam disponíveis para leitores de tela. A posição da balança fica mais próxima da margem direita; o enquadramento inicial destaca a profundidade dos pratos. Sombras reais entre as peças e sob a base reforçam o volume, sem adicionar imagens do objeto.

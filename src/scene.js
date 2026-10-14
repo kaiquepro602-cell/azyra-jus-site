@@ -12,10 +12,10 @@ function startScene(){
  const fallback=document.querySelector('#balance-fallback');
  const status=document.querySelector('#scene-status');
  const preference=matchMedia('(prefers-reduced-motion: reduce)');
- const desktopPreference=matchMedia('(hover: hover) and (pointer: fine)');
+ const desktopPreference=matchMedia('(min-width: 951px), (any-hover: hover) and (any-pointer: fine)');
  let renderer,environment,controls,resizeObserver,visibilityObserver;
  const disposables=[];
- let frame=0,visible=true,dragging=false,hovered=false,focused=false,userPaused=false,reduced=window.AzyraMotion?.reduced??preference.matches,disposed=false,time=0,lastTime=0;
+ let frame=0,visible=true,dragging=false,userPaused=false,reduced=window.AzyraMotion?.reduced??preference.matches,disposed=false,time=0,lastTime=0;
  let desktop=desktopPreference.matches,spin=0,spinSpeed=0,lastInteraction=-Infinity;
  let rotationTarget=null,turning=false;
  const announce=text=>{status.textContent=text};
@@ -68,11 +68,6 @@ function startScene(){
   controls.addEventListener('start',()=>{dragging=true;spinSpeed=0;rotationTarget=null;turning=false;requestFrame();});
   controls.addEventListener('end',()=>{dragging=false;lastInteraction=performance.now();requestFrame();});
   controls.addEventListener('change',requestFrame);
-  const on=(target,event,fn)=>{target.addEventListener(event,fn);disposables.push(()=>target.removeEventListener(event,fn));};
-  on(canvas,'pointerenter',()=>{hovered=true;spinSpeed=0;requestFrame();});
-  on(canvas,'pointerleave',()=>{hovered=false;lastInteraction=performance.now();requestFrame();});
-  on(canvas,'focus',()=>{focused=true;spinSpeed=0;requestFrame();});
-  on(canvas,'blur',()=>{focused=false;lastInteraction=performance.now();requestFrame();});
   const desktopChange=()=>{desktop=desktopPreference.matches;spinSpeed=0;requestFrame();};
   desktopPreference.addEventListener('change',desktopChange);disposables.push(()=>desktopPreference.removeEventListener('change',desktopChange));
   function fit(){
@@ -88,12 +83,12 @@ function startScene(){
   function renderLoop(stamp){
    frame=0;if(disposed||!visible||document.hidden)return;
    const dt=lastTime?Math.min(.05,(stamp-lastTime)/1000):0;lastTime=stamp;
-   const moving=!reduced&&!userPaused&&!dragging&&!hovered&&!focused;
+   const moving=!reduced&&!userPaused&&!dragging;
    if(moving){
     time+=dt;
-    const targetSpeed=desktop&&stamp-lastInteraction>1200?Math.PI/40:0;
+    const targetSpeed=desktop&&stamp-lastInteraction>1200?Math.PI/22.5:0;
     spinSpeed+=(targetSpeed-spinSpeed)*(1-Math.exp(-dt/.8));
-    // Negative Y rotation is clockwise when viewed from above; one turn / 80s.
+    // Negative Y rotation is clockwise when viewed from above; one turn / 45s.
     spin=(spin-dt*spinSpeed)%(Math.PI*2);
     root.position.y=Math.sin(time*.6)*.018;root.rotation.x=Math.sin(time*.45)*.008;
     root.rotation.y=spin;root.rotation.z=Math.sin(time*.6)*.006;
@@ -116,12 +111,12 @@ function startScene(){
   const togglePause=()=>{userPaused=!userPaused;spinSpeed=0;announce(userPaused?'Rotação pausada.':'Rotação retomada.');requestFrame();};
   const keydown=event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();turn(event.key==='ArrowLeft'?-1:1);}if(event.key==='Home'){event.preventDefault();reset();}if(event.code==='Space'||event.key===' '){event.preventDefault();if(!event.repeat)togglePause();}};
   canvas.addEventListener('keydown',keydown);disposables.push(()=>canvas.removeEventListener('keydown',keydown));
-  const motionChange=event=>{reduced=event.detail.reduced;controls.enableDamping=!reduced;if(reduced){spinSpeed=0;root.rotation.x=0;root.rotation.z=0;root.position.y=0;}requestFrame();};
+  const motionChange=event=>{reduced=event.detail.reduced;controls.enableDamping=!reduced;spinSpeed=0;if(reduced){root.rotation.x=0;root.rotation.z=0;root.position.y=0;}else{userPaused=false;lastInteraction=-Infinity;}requestFrame();};
   document.addEventListener('azyra:motion',motionChange);disposables.push(()=>document.removeEventListener('azyra:motion',motionChange));
   reduced=window.AzyraMotion?.reduced??preference.matches;controls.enableDamping=!reduced;
   const visibilityChange=()=>{if(document.hidden){cancelAnimationFrame(frame);frame=0;lastTime=0;}else requestFrame();};document.addEventListener('visibilitychange',visibilityChange);disposables.push(()=>document.removeEventListener('visibilitychange',visibilityChange));
   const lost=event=>{event.preventDefault();disposed=true;cancelAnimationFrame(frame);frame=0;fallback.hidden=false;canvas.hidden=true;document.querySelector('#scene-help').textContent='Referência visual da balança.';announce('Visualização estática. Recarregue a página para tentar retomar o 3D.');};canvas.addEventListener('webglcontextlost',lost);disposables.push(()=>canvas.removeEventListener('webglcontextlost',lost));
-  window.Azyra3D={root,model,camera,controls,turn,reset,togglePause,get state(){return{reduced,userPaused,visible,dragging,desktop,hovered,focused,clockwiseAngle:spin,autoRotating:desktop&&!reduced&&!userPaused&&!dragging&&!hovered&&!focused};}};
+  window.Azyra3D={root,model,camera,controls,turn,reset,togglePause,get state(){return{reduced,userPaused,visible,dragging,desktop,clockwiseAngle:spin,autoRotating:desktop&&!reduced&&!userPaused&&!dragging};}};
   fit();renderer.render(scene,camera);fallback.hidden=true;host.classList.add('is-ready');announce('3D pronto. Explore com mouse ou teclado.');requestFrame();
  }catch(error){
   disposed=true;disposables.forEach(fn=>fn());controls?.dispose();environment?.dispose();renderer?.dispose();host.querySelector('canvas')?.remove();fallback.hidden=false;
