@@ -17,7 +17,9 @@ npm install
 npm run build:3d
 ```
 
-Fontes: `src/scene.js` e `src/createBalanceModel.ts`.
+Fontes: `src/scene.js`, `src/createBalanceModel.ts` e `src/refineBalanceModel.js`.
+
+A revisão visual inclui correntes com 156 elos, base octogonal com chanfros, coluna torneada, pratos arredondados e barras com inscrições em relevo. A foto do escritório mantém sua resolução original e é exibida sem filtro de desfoque ou dessaturação. O sombreamento do fundo preserva a leitura do texto.
 
 ## Netlify
 

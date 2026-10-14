@@ -38,7 +38,7 @@
     ],
     "descriptionRule": "Use measurable 3D graphics terms. Avoid vague words unless they are paired with concrete geometry/material/shader parameters."
   },
-  "sourceImage": "assets/balanca-referencia.webp",
+  "sourceImage": "/workspace/scratch/05dbb33bd080/reference-360/balance-isolated.png",
   "referenceCamera": {
     "solved": false,
     "fovDegrees": 36,
@@ -1007,8 +1007,10 @@
       "Quality contract has named all required macro feature groups before code generation.",
       "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold.",
       "browser render screenshot from your agent's browser/screenshot tool",
-      "single side-by-side full reference/render comparison sheet",
-      "all critical semantic feature scores at or above their thresholds",
+      "side-by-side reference/render comparison sheet for AI vision review",
+      "banded interior difference vs the reference baseline (forge/stage4_review/interior_difference.py --from/--to per region)",
+      "AI vision score at or above the visual acceptance threshold",
+      "all critical semantic feature scores from the shared image pair at or above their thresholds",
       "self-correction review appended with action=continue before the next pass"
     ]
   },
@@ -6175,6 +6177,27 @@
         "notes": "",
         "aiVisionNotes": ""
       }
+    },
+    {
+      "timestamp": "2026-10-14T20:35:26.316338+00:00",
+      "passId": "blockout",
+      "estimatedFidelity": 0.6,
+      "aiVisionScore": null,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {},
+      "featureReviews": [],
+      "action": "request-input",
+      "summary": "Current unapproved website preview corrected in code: 156 oval links, octagonal bevelled foot, continuous turned spindle, rounded dishes and bullion relief. Tier 1 mask/framing remains invalid; no AI acceptance score and no later pass unlocked. Need clean reference mask and actual browser captures for fidelity approval.",
+      "matched": [],
+      "mismatches": [],
+      "specFixes": [],
+      "codeFixes": [],
+      "evidence": [
+        "src/refineBalanceModel.js",
+        "renders/revision-detail/0.png",
+        "renders/revision-detail/45.png",
+        "offline inspection only, not browser PBR evidence"
+      ]
     }
   ],
   "lodPlan": [
@@ -6278,7 +6301,7 @@
         "key_path": "categories.rendering_shader_mapping[7]",
         "score": 5.336318092881,
         "snippets": [
-          "Maps to any part defined by a unique 2D silhouette pushed into 3D depth with a bevel. \u00c1nh x\u1ea1 t\u1edbi b\u1ea5t k\u1ef3 b\u1ed9 ph\u1eadn n\u00e0o \u0111\u01b0\u1ee3c \u0111\u1ecbnh ngh\u0129a b\u1eb1ng \u0111\u01b0\u1eddng vi\u1ec1n 2D \u0111\u1ed9c nh\u1ea5t, \u0111\u1ea9y v\u00e0o chi\u1ec1u s\u00e2u 3D v\u1edbi c\u1ea1nh v\u00e1t. Recognition cues: Blade shape that doesn't match ..."
+          "Maps to any part defined by a unique 2D silhouette pushed into 3D depth with a bevel. Ánh xạ tới bất kỳ bộ phận nào được định nghĩa bằng đường viền 2D độc nhất, đẩy vào chiều sâu 3D với cạnh vát. Recognition cues: Blade shape that doesn't match ..."
         ],
         "source_refs": [
           {
@@ -6302,7 +6325,7 @@
         "key_path": "categories.material_pbr[6]",
         "score": 4.837524638212,
         "snippets": [
-          "Directional specular stretching seen on brushed or grooved metal, where reflections elongate along the grain direction. Hi\u1ec7n t\u01b0\u1ee3ng ph\u1ea3n x\u1ea1 specular k\u00e9o d\u00e0i theo m\u1ed9t h\u01b0\u1edbng, th\u1ea5y tr\u00ean kim lo\u1ea1i \u0111\u01b0\u1ee3c ch\u1ea3i x\u01b0\u1edbc ho\u1eb7c c\u00f3 r\u00e3nh, ph\u1ea3n x\u1ea1 k\u00e9o d\u00e0i theo ..."
+          "Directional specular stretching seen on brushed or grooved metal, where reflections elongate along the grain direction. Hiện tượng phản xạ specular kéo dài theo một hướng, thấy trên kim loại được chải xước hoặc có rãnh, phản xạ kéo dài theo ..."
         ],
         "source_refs": [
           {
@@ -6326,7 +6349,7 @@
         "key_path": "categories.material_pbr[0]",
         "score": 3.958266134078,
         "snippets": [
-          "Binary or scalar property defining whether a surface is dielectric (0.0) or conductive metal (1.0); intermediate values blend the two. Thu\u1ed9c t\u00ednh nh\u1ecb ph\u00e2n ho\u1eb7c v\u00f4 h\u01b0\u1edbng x\u00e1c \u0111\u1ecbnh b\u1ec1 m\u1eb7t l\u00e0 \u0111i\u1ec7n m\u00f4i (0.0) hay kim lo\u1ea1i d\u1eabn \u0111i\u1ec7n (1.0); gi\u00e1 tr\u1ecb trung ..."
+          "Binary or scalar property defining whether a surface is dielectric (0.0) or conductive metal (1.0); intermediate values blend the two. Thuộc tính nhị phân hoặc vô hướng xác định bề mặt là điện môi (0.0) hay kim loại dẫn điện (1.0); giá trị trung ..."
         ],
         "source_refs": [
           {
@@ -6773,6 +6796,583 @@
       "renderHash": "34730ef8968921f6",
       "passId": "blockout",
       "mapStrippedRender": "renders/blockout-v3/0.png"
+    },
+    {
+      "passed": false,
+      "checks": {
+        "silhouetteIoU": 0.0065,
+        "aspectRatioDelta": 0.0914,
+        "scaleDelta": 3.0057,
+        "bilateralSymmetryError": 0.0257,
+        "colorDelta": {
+          "checked": 26,
+          "maxDeltaE": 3.56,
+          "perComponent": [
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.56
+            }
+          ],
+          "gated": false
+        }
+      },
+      "failures": [
+        "silhouette IoU 0.007 is below threshold 0.85",
+        "aspect-ratio delta 0.091 exceeds threshold 0.05",
+        "scale delta 3.006 exceeds threshold 0.08",
+        "blockout requires --map-stripped-render evidence"
+      ],
+      "maskWarnings": [
+        "reference: 70.5% of foreground cells lie outside the largest connected blob and were excluded from the bounding box; if the subject really has separated parts in this projection, they are not being measured",
+        "render: 36.8% of foreground cells lie outside the largest connected blob and were excluded from the bounding box; if the subject really has separated parts in this projection, they are not being measured"
+      ],
+      "renderHash": "ace8cab44a128391",
+      "passId": "blockout"
     }
-  ]
+  ],
+  "websiteRefinement": {
+    "pass": "blockout",
+    "approved": false,
+    "date": "2026-10-14",
+    "source": "src/refineBalanceModel.js",
+    "sourceSha256": "0e84aa6289306c5bf145db35d9b9b39dd0da5277fff30bb2146927eb6482729e",
+    "parameters": {
+      "spindleProfileWorldY": [
+        [
+          0.13,
+          0.22
+        ],
+        [
+          0.16,
+          0.27
+        ],
+        [
+          0.19,
+          0.32
+        ],
+        [
+          0.23,
+          0.4
+        ],
+        [
+          0.265,
+          0.51
+        ],
+        [
+          0.28,
+          0.61
+        ],
+        [
+          0.265,
+          0.69
+        ],
+        [
+          0.21,
+          0.77
+        ],
+        [
+          0.155,
+          0.87
+        ],
+        [
+          0.15,
+          0.94
+        ],
+        [
+          0.15,
+          1.48
+        ],
+        [
+          0.155,
+          1.6
+        ],
+        [
+          0.2,
+          1.67
+        ],
+        [
+          0.23,
+          1.75
+        ],
+        [
+          0.24,
+          1.82
+        ],
+        [
+          0.225,
+          1.91
+        ],
+        [
+          0.175,
+          2.02
+        ],
+        [
+          0.155,
+          2.07
+        ],
+        [
+          0.15,
+          2.14
+        ],
+        [
+          0.15,
+          3.52
+        ],
+        [
+          0.155,
+          3.61
+        ],
+        [
+          0.2,
+          3.68
+        ],
+        [
+          0.24,
+          3.76
+        ],
+        [
+          0.25,
+          3.83
+        ],
+        [
+          0.23,
+          3.93
+        ],
+        [
+          0.17,
+          4.02
+        ],
+        [
+          0.15,
+          4.11
+        ],
+        [
+          0.15,
+          4.59
+        ]
+      ],
+      "latheProfiles": [
+        {
+          "points": [
+            [
+              0.15,
+              -0.1
+            ],
+            [
+              0.185,
+              -0.1
+            ],
+            [
+              0.215,
+              -0.095
+            ],
+            [
+              0.24,
+              -0.077
+            ],
+            [
+              0.253,
+              -0.049
+            ],
+            [
+              0.257,
+              0
+            ],
+            [
+              0.253,
+              0.049
+            ],
+            [
+              0.24,
+              0.077
+            ],
+            [
+              0.215,
+              0.095
+            ],
+            [
+              0.185,
+              0.1
+            ],
+            [
+              0.15,
+              0.1
+            ]
+          ],
+          "segments": 80
+        },
+        {
+          "points": [
+            [
+              0.145,
+              -0.325
+            ],
+            [
+              0.17,
+              -0.29
+            ],
+            [
+              0.195,
+              -0.22
+            ],
+            [
+              0.18,
+              -0.16
+            ],
+            [
+              0.15,
+              -0.13
+            ],
+            [
+              0.16,
+              -0.09
+            ],
+            [
+              0.17,
+              -0.065
+            ],
+            [
+              0.14,
+              -0.035
+            ],
+            [
+              0.11,
+              0.035
+            ],
+            [
+              0.095,
+              0.09
+            ],
+            [
+              0.11,
+              0.14
+            ],
+            [
+              0.14,
+              0.2
+            ],
+            [
+              0.17,
+              0.26
+            ],
+            [
+              0.18,
+              0.325
+            ]
+          ],
+          "segments": 80
+        },
+        {
+          "points": [
+            [
+              0,
+              -0.57
+            ],
+            [
+              0.09,
+              -0.57
+            ],
+            [
+              0.113,
+              -0.555
+            ],
+            [
+              0.126,
+              -0.53
+            ],
+            [
+              0.13,
+              -0.5
+            ],
+            [
+              0.13,
+              0.5
+            ],
+            [
+              0.126,
+              0.53
+            ],
+            [
+              0.113,
+              0.555
+            ],
+            [
+              0.09,
+              0.57
+            ],
+            [
+              0,
+              0.57
+            ]
+          ],
+          "segments": 80
+        },
+        {
+          "points": [
+            [
+              0,
+              -0.117
+            ],
+            [
+              0.25,
+              -0.117
+            ],
+            [
+              0.42,
+              -0.113
+            ],
+            [
+              0.53,
+              -0.097
+            ],
+            [
+              0.62,
+              -0.059
+            ],
+            [
+              0.69,
+              -0.011
+            ],
+            [
+              0.739,
+              0.044
+            ],
+            [
+              0.765,
+              0.083
+            ],
+            [
+              0.767,
+              0.095
+            ],
+            [
+              0.757,
+              0.105
+            ],
+            [
+              0.745,
+              0.1
+            ],
+            [
+              0.721,
+              0.066
+            ],
+            [
+              0.681,
+              0.018
+            ],
+            [
+              0.615,
+              -0.033
+            ],
+            [
+              0.53,
+              -0.071
+            ],
+            [
+              0.42,
+              -0.087
+            ],
+            [
+              0.25,
+              -0.092
+            ],
+            [
+              0,
+              -0.092
+            ]
+          ],
+          "segments": 96
+        }
+      ],
+      "octagonalFoot": {
+        "sides": 8,
+        "angleOffset": 0.39269908169872414,
+        "bevelSize": 0.012,
+        "bevelThickness": 0.012,
+        "bevelSegments": 3,
+        "dimensions": "component.dimensions; depth/width scale"
+      },
+      "chains": {
+        "linkEllipseRadii": [
+          0.033,
+          0.065
+        ],
+        "wireRadius": 0.01,
+        "tubularSegments": 24,
+        "radialSegments": 6,
+        "spacingTarget": 0.098,
+        "endpointInset": 0.075,
+        "alternatingPlaneRadians": 1.5707963267948966,
+        "countPerSuspension": 26,
+        "totalLinks": 156
+      },
+      "beam": {
+        "tubularSegments": 96,
+        "radius": 0.069,
+        "radialSegments": 20,
+        "depthScale": 0.8,
+        "path": "component geometryDescriptor.tubePath"
+      },
+      "bowls": {
+        "segments": 96,
+        "rolledLipMajorRadius": 0.756,
+        "rolledLipMinorRadius": 0.012,
+        "lipRadialSegments": 10
+      },
+      "bullion": {
+        "boxCornerSegments": 3,
+        "bevelRadius": 0.023,
+        "topTaper": 0.09,
+        "hallmarks": [
+          "GOLD",
+          "999.9"
+        ],
+        "strokeRadius": 0.0021,
+        "strokeY": 0.141,
+        "letterforms": "approximate vector relief, not exact engraving"
+      },
+      "materials": {
+        "gold": {
+          "baseColor": "#e3b650",
+          "metalness": 1,
+          "roughness": 0.19
+        },
+        "edge": {
+          "baseColor": "#edc768",
+          "metalness": 1,
+          "roughness": 0.14
+        },
+        "bullion": {
+          "baseColor": "#f0c95c",
+          "metalness": 1,
+          "roughness": 0.22
+        },
+        "stamp": {
+          "baseColor": "#a67d25",
+          "metalness": 1,
+          "roughness": 0.32
+        }
+      }
+    },
+    "evidence": {
+      "renderer": "offline EGL geometry inspection, not browser Three.js PBR",
+      "angles": [
+        0,
+        45,
+        90,
+        180,
+        270
+      ],
+      "parts": 26,
+      "triangles": 86724,
+      "interactionTests": "DOM with real Three geometry and OrbitControls; mocked renderer"
+    },
+    "limitations": [
+      "Single reference; hidden surfaces inferred",
+      "Tier 1 silhouette comparison blocked by fragmented gold foreground masking and framing",
+      "No browser/GPU appearance or performance approval",
+      "Later sculpt passes remain locked"
+    ]
+  }
 }

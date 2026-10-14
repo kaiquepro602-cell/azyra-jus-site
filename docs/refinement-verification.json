@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-14",
+  "geometry": {
+    "finitePositionsAndNormals": true,
+    "chainAssemblies": 6,
+    "chainLinkOpenCentresAndWireRaycasts": "PASS",
+    "parts": 26,
+    "links": 156,
+    "triangles": 86724
+  },
+  "interaction": [
+    {
+      "libraries": true,
+      "reduced": false,
+      "failure": false,
+      "result": "PASS",
+      "verification": "DOM, real Three geometry / OrbitControls, mocked WebGL renderer; not GPU/browser QA"
+    },
+    {
+      "libraries": true,
+      "reduced": true,
+      "failure": false,
+      "result": "PASS",
+      "verification": "DOM, real Three geometry / OrbitControls, mocked WebGL renderer; not GPU/browser QA"
+    },
+    {
+      "libraries": true,
+      "reduced": false,
+      "failure": true,
+      "result": "PASS",
+      "verification": "DOM, real Three geometry / OrbitControls, mocked WebGL renderer; not GPU/browser QA"
+    },
+    {
+      "libraries": false,
+      "reduced": false,
+      "failure": false,
+      "result": "PASS",
+      "verification": "DOM, real Three geometry / OrbitControls, mocked WebGL renderer; not GPU/browser QA"
+    }
+  ],
+  "background": {
+    "sourceWidth": 1672,
+    "sourceHeight": 941,
+    "imageOpacity": 1,
+    "blurFilter": false,
+    "desaturationFilter": false
+  },
+  "limits": [
+    "Offline geometry inspection only; browser GPU appearance and performance pending",
+    "img2threejs fidelity approval pending; later passes locked"
+  ]
+}

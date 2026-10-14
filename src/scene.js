@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
 import {createGoldBalanceWithCurvedBeamChainsAndBullionModel as createBalance} from './createBalanceModel.ts';
+import {refineBalanceModel} from './refineBalanceModel.js';
 
 // Interactive preview of the preserved img2threejs blockout. No deeper sculpt pass
 // has been marked approved; reference and browser review are documented in LEIA-ME.
@@ -18,12 +19,12 @@ function startScene(){
  let rotationTarget=null,turning=false;
  const announce=text=>{status.textContent=text};
  try{
-  renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'low-power'});
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.5));
+  renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'high-performance'});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
   renderer.setClearColor(0,0);
   renderer.outputColorSpace=THREE.SRGBColorSpace;
   renderer.toneMapping=THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure=1.05;
+  renderer.toneMappingExposure=.95;
   const canvas=renderer.domElement;
   canvas.id='balance-canvas';canvas.tabIndex=0;
   canvas.setAttribute('role','img');canvas.setAttribute('aria-label','Balança dourada em 3D. Arraste horizontalmente para girar 360 graus. Use as setas do teclado para girar e a tecla Home para restaurar.');
@@ -32,17 +33,23 @@ function startScene(){
   const scene=new THREE.Scene();
   const pmrem=new THREE.PMREMGenerator(renderer);
   const room=new RoomEnvironment();
-  environment=pmrem.fromScene(room,.04);scene.environment=environment.texture;
+  // Broad studio reflection cards give polished metal light/dark boundaries.
+  const cards=[];
+  for(const [position,size,intensity] of [[[-4,2,4],[2,7,.1],3],[[4,1,-2],[1,6,.1],2],[[0,6,1],[5,.1,3],2.5]]){
+   const card=new THREE.Mesh(new THREE.BoxGeometry(...size),new THREE.MeshBasicMaterial({color:new THREE.Color(0xfff4df).multiplyScalar(intensity)}));
+   card.position.set(...position);card.lookAt(0,1,0);room.add(card);cards.push(card);
+  }
+  environment=pmrem.fromScene(room,.015);scene.environment=environment.texture;
+  cards.forEach(card=>{room.remove(card);card.geometry.dispose();card.material.dispose();});
   room.dispose();pmrem.dispose();
   const camera=new THREE.PerspectiveCamera(34,1,.1,100);
-  camera.position.set(6,2,12);
-  const hemisphere=new THREE.HemisphereLight(0xfff1dc,0x063c2e,1.5);scene.add(hemisphere);
-  const key=new THREE.DirectionalLight(0xffedd1,3);key.position.set(-4,6,6);scene.add(key);
-  const rim=new THREE.DirectionalLight(0xc6a15b,2);rim.position.set(5,2,-4);scene.add(rim);
+  camera.position.set(3.2,2.1,14);
+  const hemisphere=new THREE.HemisphereLight(0xfff1dc,0x063c2e,.65);scene.add(hemisphere);
+  const key=new THREE.DirectionalLight(0xfff2dc,2.6);key.position.set(-4,6,6);scene.add(key);
+  const rim=new THREE.DirectionalLight(0xffdb91,1.8);rim.position.set(5,2,-4);scene.add(rim);
   const root=new THREE.Group();scene.add(root);
-  const model=createBalance({castShadow:false,receiveShadow:false});
+  const model=refineBalanceModel(createBalance({castShadow:false,receiveShadow:false,textureSize:32}));
   model.position.y=-2.68;root.add(model);
-  model.traverse(mesh=>{if(mesh.isMesh){mesh.material.envMapIntensity=1.3;mesh.material.roughness=Math.max(.18,mesh.material.roughness);}});
   controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.dampingFactor=.075;
   controls.enablePan=false;controls.enableZoom=false;controls.minPolarAngle=.32;controls.maxPolarAngle=Math.PI-.32;
   controls.rotateSpeed=.65;controls.target.set(0,0,0);controls.update();
@@ -63,7 +70,7 @@ function startScene(){
    frame=0;if(disposed||!visible||document.hidden)return;
    const dt=lastTime?Math.min(.05,(stamp-lastTime)/1000):0;lastTime=stamp;
    const moving=!reduced&&!userPaused&&!dragging;
-   if(moving){time+=dt;root.position.y=Math.sin(time*.7)*.045;root.rotation.x=Math.sin(time*.55)*.025;root.rotation.y=Math.sin(time*.33)*.10;root.rotation.z=Math.sin(time*.72)*.018;}
+   if(moving){time+=dt;root.position.y=Math.sin(time*.6)*.024;root.rotation.x=Math.sin(time*.45)*.012;root.rotation.y=Math.sin(time*.3)*.055;root.rotation.z=Math.sin(time*.6)*.009;}
    if(rotationTarget!==null){
     const sphere=new THREE.Spherical().setFromVector3(camera.position.clone().sub(controls.target));
     let delta=rotationTarget-sphere.theta;delta=Math.atan2(Math.sin(delta),Math.cos(delta));
@@ -78,7 +85,7 @@ function startScene(){
    rotationTarget=(rotationTarget??sphere.theta)+direction*Math.PI/4;turning=true;requestFrame();
    announce(direction>0?'Vista girada 45 graus para a direita.':'Vista girada 45 graus para a esquerda.');
   };
-  const reset=()=>{camera.position.set(6,2,12);rotationTarget=null;turning=false;root.rotation.set(0,0,0);root.position.y=0;fit();announce('Perspectiva inicial restaurada.');};
+  const reset=()=>{camera.position.set(3.2,2.1,14);rotationTarget=null;turning=false;root.rotation.set(0,0,0);root.position.y=0;fit();announce('Perspectiva inicial restaurada.');};
   const syncPause=()=>{const stopped=userPaused||reduced;pause.setAttribute('aria-pressed',String(stopped));pause.textContent=stopped?'Retomar balanço':'Pausar balanço';pause.disabled=reduced;};
   const pauseClick=()=>{userPaused=!userPaused;syncPause();requestFrame();};pause.addEventListener('click',pauseClick);disposables.push(()=>pause.removeEventListener('click',pauseClick));
   document.querySelectorAll('[data-turn]').forEach(button=>{const fn=()=>turn(Number(button.dataset.turn));button.addEventListener('click',fn);disposables.push(()=>button.removeEventListener('click',fn));});

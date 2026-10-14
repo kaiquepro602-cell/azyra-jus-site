@@ -35,13 +35,15 @@ Esta versão não foi publicada automaticamente.
 
 ## Estado da reconstrução
 
-O ZIP do objeto continha JPG e EPS, sem GLB/OBJ. O modelo foi reconstruído a partir da imagem em código Three.js. Possui 26 partes e cerca de 11.800 triângulos na geometria de referência.
+O ZIP do objeto continha JPG e EPS, sem GLB/OBJ. O modelo foi reconstruído a partir da imagem em código Three.js. A revisão de 14/10/2026 mantém 26 partes e possui 86.724 triângulos, incluindo 156 elos ovais alternados nas seis correntes, base octogonal com chanfros, perfis torneados, bordas dos pratos e barras chanfradas com inscrições em relevo.
 
-É uma **prévia aproximada de reconstrução**, ainda no primeiro estágio de escultura. O verso é inferido; correntes, barras, acabamento da base e pequenos ornamentos são simplificados. Não é uma réplica fiel nem um modelo com todos os passes da skill aprovados.
+É uma **prévia aproximada de reconstrução**, ainda sem aprovação do primeiro estágio de escultura. O verso é inferido e as inscrições são aproximações em relevo. A correção manual do modelo atual fica em `src/refineBalanceModel.js`; seus parâmetros estão preservados em `docs/object-sculpt-spec.json`, no campo `websiteRefinement`. Não é uma réplica fiel nem um modelo com todos os passes da skill aprovados.
 
-A revisão img2threejs permanece pendente. A imagem original tem fundo escuro e reflexos fortes: o diagnóstico de silhueta descartou 64,7% dos pixels de primeiro plano durante a comparação e não passou. Nenhuma aprovação de fidelidade foi inventada. Para prosseguir com os passes de detalhe, é necessária uma referência limpa para comparação e revisão de capturas do objeto.
+A revisão img2threejs permanece pendente. A imagem original tem fundo escuro e reflexos fortes: o novo diagnóstico de silhueta descartou 70,5% dos pixels de primeiro plano da referência e 36,8% do render de inspeção durante a comparação. Esse resultado não fornece uma medida válida de fidelidade. Nenhuma aprovação de fidelidade foi inventada e nenhum passe posterior foi liberado. Para prosseguir com a aprovação, são necessárias uma referência limpa para comparação e capturas do objeto no navegador.
 
 Foram produzidas renderizações offline em cinco ângulos, usando a geometria exata exportada da factory Three.js. Essas renderizações verificam o volume aproximado, mas usam um renderizador de inspeção; não comprovam o material final no navegador. A captura de navegador e a validação visual do site não estavam disponíveis nesta sessão.
+
+A foto de fundo do escritório usa os 1.672 × 941 pixels do arquivo original, sem ampliação artificial, filtro de desfoque ou dessaturação. A opacidade da imagem passou de 7% para 100%, com gradientes de contraste sobrepostos atrás do texto. A foto da seção de visão também deixou de ser ampliada por parallax. O canvas 3D utiliza antialiasing e densidade de até 2 pixels por pixel CSS; o desempenho em GPU e celular permanece a conferir.
 
 ## Verificações realizadas
 
@@ -61,7 +63,7 @@ Os endereços públicos ficam em `config.js`. Plataforma, WhatsApp, e-mail e pol
 Os dados da demonstração são fictícios. A página não tem conexão ao backend do SaaS.
 
 Arquivos principais: `index.html`, `editorial.css`, `motion.js` e `app.js`.
-A cena está em `src/scene.js`, e a factory gerada está em `src/createBalanceModel.ts`.
+A cena está em `src/scene.js`, a factory gerada está em `src/createBalanceModel.ts`, e a correção manual atual está em `src/refineBalanceModel.js`. A correção mantém o status de prévia sem aprovação; não substitui os gates da skill.
 Se modificar os fontes 3D, execute `npm install` e depois `npm run build:3d` para atualizar `balance-3d.js`. Não é necessário reinstalar dependências para cada alteração.
 
 ## Créditos
